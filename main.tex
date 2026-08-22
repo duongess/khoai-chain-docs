@@ -14,6 +14,7 @@
 \usepackage{enumitem}
 \usepackage{tabularx}
 \usepackage{titletoc}
+\usepackage{xltabular}
 
 
 \usetikzlibrary{calc}
@@ -89,7 +90,7 @@
         % Header truong va khoa
         \Large \textbf{ĐẠI HỌC XÂY DỰNG HÀ NỘI}\\[0.1cm]
         \large \textbf{KHOA CÔNG NGHỆ THÔNG TIN}\\[0.1cm]
-        \large {-------------o0o-------------}\\[1cm]
+        {\large \rule{3.5cm}{0.5pt} \raisebox{-0.15ex}{o0o} \rule{3.5cm}{0.5pt}}\\[1cm]
 
         % Logo truong
         \vspace{1.5cm}
@@ -132,25 +133,42 @@
 \section*{Danh mục từ viết tắt, thuật ngữ}
 \addcontentsline{toc}{section}{Danh mục từ viết tắt, thuật ngữ}
 
-\begin{table}[H]
-    \centering
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{|c|l|X|}
-        \hline
-        \textbf{STT} & \textbf{Từ viết tắt, thuật ngữ} & \textbf{Giải nghĩa} \\ \hline
-        1 & BFT & Dung sai lỗi Byzantine (Byzantine Fault Tolerance) \\ \hline
-        2 & CA & Tổ chức cấp chứng chỉ (Certificate Authority) \\ \hline
-        3 & CFT & Dung sai lỗi hỏng hóc (Crash Fault Tolerance) \\ \hline
-        4 & CLI & Giao diện dòng lệnh (Command-Line Interface) \\ \hline
-        5 & DLT & Công nghệ sổ cái phân tán (Distributed Ledger Technology) \\ \hline
-        6 & P2P & Mạng ngang hàng (Peer-to-Peer) \\ \hline
-        7 & PoS & Bằng chứng cổ phần (Proof of Stake) \\ \hline
-        8 & PoW & Bằng chứng công việc (Proof of Work) \\ \hline
-        9 & SDK & Bộ công cụ phát triển phần mềm (Software Development Kit) \\ \hline
-        10 & SME & Doanh nghiệp vừa và nhỏ (Small and Medium-sized Enterprises) \\ \hline
-        11 & TPS & Tốc độ xử lý giao dịch (Transactions Per Second) \\ \hline
-    \end{tabularx}
-\end{table}
+% Bang danh muc tu viet tat da duoc cap nhat day du và sap xep theo thu tu bang chu cai
+\renewcommand{\arraystretch}{1.5}
+\begin{xltabular}{\textwidth}{|c|l|X|}
+    \hline
+    \textbf{STT} & \textbf{Từ viết tắt, thuật ngữ} & \textbf{Giải nghĩa} \\ \hline
+    1 & API & Giao diện lập trình ứng dụng (Application Programming Interface) \\ \hline
+    2 & BFT & Dung sai lỗi Byzantine (Byzantine Fault Tolerance) \\ \hline
+    3 & CA & Tổ chức cấp chứng chỉ (Certificate Authority) \\ \hline
+    4 & CFT & Dung sai lỗi hỏng hóc (Crash Fault Tolerance) \\ \hline
+    5 & CLI & Giao diện dòng lệnh (Command-Line Interface) \\ \hline
+    6 & CPU & Bộ vi xử lý trung tâm \\ \hline
+    7 & DHT & Bảng băm phân tán (Distributed Hash Table) \\ \hline
+    8 & DLT & Công nghệ sổ cái phân tán (Distributed Ledger Technology) \\ \hline
+    9 & DX & Trải nghiệm dành cho nhà phát triển (Developer Experience) \\ \hline
+    10 & ECDSA & Thuật toán chữ ký số dựa trên đường cong Elliptic (Elliptic Curve Digital Signature Algorithm) \\ \hline
+    11 & EVM & Máy ảo Ethereum (Ethereum Virtual Machine) \\ \hline
+    12 & I/O & Input/Output \\ \hline
+    13 & IBFT & Istanbul Byzantine Fault Tolerance \\ \hline
+    14 & ID & Mã định danh (Identifier) \\ \hline
+    15 & JSON & JavaScript Object Notation \\ \hline
+    16 & P2P & Mạng ngang hàng (Peer-to-Peer) \\ \hline
+    17 & PBFT & Practical Byzantine Fault Tolerance \\ \hline
+    18 & PoA & Bằng chứng ủy quyền (Proof of Authority) \\ \hline
+    19 & PoS & Bằng chứng cổ phần (Proof of Stake) \\ \hline
+    20 & PoW & Bằng chứng công việc (Proof of Work) \\ \hline
+    21 & RAM & Bộ nhớ trong \\ \hline
+    22 & RPC & Remote Procedure Call \\ \hline
+    23 & RSA & Thuật toán mã hóa bất đối xứng Rivest-Shamir-Adleman \\ \hline
+    24 & SDK & Bộ công cụ phát triển phần mềm (Software Development Kit) \\ \hline
+    25 & SHA-256 & Thuật toán băm an toàn 256-bit (Secure Hash Algorithm 256-bit) \\ \hline
+    26 & SME & Doanh nghiệp vừa và nhỏ (Small and Medium-sized Enterprises) \\ \hline
+    27 & SPOF & Điểm lỗi duy nhất (Single Point of Failure) \\ \hline
+    28 & TCP/IP & Giao thức điều khiển truyền vận/Giao thức Internet \\ \hline
+    29 & TPS & Tốc độ xử lý giao dịch (Transactions Per Second) \\ \hline
+    30 & VPS & Máy chủ ảo (Virtual Private Server) \\ \hline
+\end{xltabular}
 
 \newpage
 % Các phần không đánh số (Dùng dấu sao * và thêm thủ công vào mục lục)
@@ -260,7 +278,7 @@ Hàm băm mật mã là một thuật toán toán học chuyển đổi một đ
 \subsubsection{Chữ ký số và Mã hóa bất đối xứng}
 Mã hóa bất đối xứng sử dụng một cặp khóa toán học liên kết chặt chẽ với nhau: Private Key dùng để tạo chữ ký số và Khóa công khai (Public Key) dùng để xác thực chữ ký hoặc định danh địa chỉ ví.
 
-Trong Blockchain, thuật toán ECDSA (Elliptic Curve Digital Signature Algorithm) - Thuật toán chữ ký số dựa trên đường cong elliptic - được áp dụng để tối ưu hóa kích thước khóa và tốc độ tính toán so với RSA truyền thống.
+Trong Blockchain, thuật toán ECDSA - Thuật toán chữ ký số dựa trên đường cong elliptic - được áp dụng để tối ưu hóa kích thước khóa và tốc độ tính toán so với RSA truyền thống.
 \begin{itemize}
     \item \textbf{Quy trình ký (Signing):} Khi người dùng muốn thực hiện giao dịch, họ dùng Private Key của mình kết hợp với mã băm của nội dung giao dịch thông qua thuật toán ECDSA để tạo ra một chuỗi chữ ký số ($Sig$).
     \item \textbf{Quy trình xác thực (Verification):} Các nút trong mạng nhận được giao dịch sẽ dùng Public Key của người gửi (được công khai) để giải mã và kiểm tra tính hợp lệ của $Sig$. Quy trình này chứng minh người gửi sở hữu tài khoản và đồng ý chuyển tiền mà không cần tiết lộ Private Key cho mạng lưới, ngăn chặn hoàn toàn việc giả mạo giao dịch.
@@ -310,7 +328,7 @@ Hệ thống chuỗi doanh nghiệp yêu cầu tốc độ xử lý cao và các
     \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{|p{3.5cm}|p{5.5cm}|p{5.5cm}|}
         \hline
-        \textbf{Đặc tính so sánh} & \textbf{Nhóm lỗi hỏng hóc (CFT - Crash Fault Tolerance)} & \textbf{Nhóm lỗi Byzantine (BFT - Byzantine Fault Tolerance)} \\ \hline
+        \textbf{Đặc tính so sánh} & \textbf{Nhóm lỗi hỏng hóc (CFT)} & \textbf{Nhóm lỗi Byzantine (BFT)} \\ \hline
         \textbf{Bản chất chống lỗi} & Chỉ chịu được lỗi nút bị sập nguồn, mất mạng (đột ngột dừng hoạt động). & Chịu được cả lỗi nút bị sập VÀ nút cố tình gian lận, gửi dữ liệu sai. \\ \hline
         \textbf{Thuật toán đại diện} & Raft, Paxos. & PBFT (Practical Byzantine Fault Tolerance), IBFT. \\ \hline
         \textbf{Cơ chế hoạt động} & Bầu ra một nút Leader (Trưởng nhóm). Mọi giao dịch gửi tới Leader, Leader ghi logs và đồng bộ xuống các nút Follower. Nếu Leader sập, các nút còn lại bầu nhanh Leader mới. & Trải qua 3 giai đoạn đồng thuận nghiêm ngặt công khai: Pre-prepare, Prepare, và Commit thông qua việc trao đổi thông điệp toàn vẹn giữa tất cả các nút. \\ \hline
@@ -470,10 +488,10 @@ Cấu trúc phân quyền được thiết kế chặt chẽ nhằm đảm bảo
             \textbf{Tác nhân} & Nút xác thực (Validator Node) \\ \hline
             \textbf{Tiền điều kiện} & Có ít nhất 1 giao dịch hợp lệ đang chờ trong Mempool. Nút đang ở trạng thái hoạt động. \\ \hline
             \textbf{Luồng sự kiện chính} & 
-            1. Nút đến lượt làm Trưởng nhóm (Leader) lấy các giao dịch từ Mempool. \newline
+            1. Nút đến lượt làm Trưởng nhóm lấy các giao dịch từ Mempool. \newline
             2. Nút Trưởng nhóm đóng gói giao dịch thành Khối đề xuất và phát tán cho các Nút xác thực khác. \newline
-            3. Các Nút xác thực kiểm tra tính hợp lệ của Khối và phát tín hiệu bỏ phiếu (Vote). \newline
-            4. Khi đủ tỷ lệ phiếu đồng ý ($>51\%$), Khối được chốt. \\ \hline
+            3. Các Nút xác thực kiểm tra tính hợp lệ của Khối và phát tín hiệu bỏ phiếu. \newline
+            4. Khi đủ tỷ lệ phiếu đồng ý ($100\%$), Khối được chốt. \\ \hline
             \textbf{Luồng ngoại lệ} & 
             - Khối chứa giao dịch sai logic: Các nút từ chối bỏ phiếu, Khối bị hủy sau thời gian timeout. \newline
             - Nút Trưởng nhóm mất kết nối: Mạng lưới tự động bầu Trưởng nhóm mới. \\ \hline
