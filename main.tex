@@ -144,6 +144,7 @@ Phạm vi nghiên cứu tập trung vào việc thiết kế và xây dựng lõ
 
 \section{Cơ sở lý thuyết và Công nghệ nền tảng}
 
+
 \subsection{Tổng quan về công nghệ Blockchain}
 
 \subsubsection{Khái niệm và nguyên lý hoạt động cơ bản}
@@ -151,7 +152,7 @@ Blockchain là một công nghệ sổ cái phân tán (Distributed Ledger Techn
 
 Cấu trúc lưu trữ dữ liệu của Blockchain bao gồm chuỗi các khối (Blocks) liên kết tuyến tính với nhau theo thời gian. Mỗi khối chứa hai thành phần chính:
 \begin{itemize}
-    \item \textbf{Block Header (Tiêu đề khối):} Chứa siêu dữ liệu (metadata) quản lý khối, bao gồm:
+    \item \textbf{Block Header:} Chứa siêu dữ liệu (metadata) quản lý khối, bao gồm:
     \begin{itemize}
         \item \textbf{Version:} Phiên bản của giao thức blockchain.
         \item \textbf{Previous Hash:} Mã băm của toàn bộ header khối trước đó. Đây là sợi xích toán học liên kết các khối. Nếu dữ liệu khối trước bị sửa đổi, mã băm này thay đổi và làm gãy toàn bộ chuỗi phía sau.
@@ -180,16 +181,16 @@ Cấu trúc lưu trữ dữ liệu của Blockchain bao gồm chuỗi các khố
 
 \subsection{Cơ sở mật mã học trong Blockchain}
 
-\subsubsection{Hàm băm mật mã (Cryptographic Hash Function)}
+\subsubsection{Hàm băm mật mã}
 Hàm băm mật mã là một thuật toán toán học chuyển đổi một đầu vào dữ liệu có kích thước bất kỳ thành một chuỗi ký tự đầu ra có độ dài cố định. Trong các hệ thống blockchain, thuật toán SHA-256 (Secure Hash Algorithm 256-bit, dùng trong Bitcoin) hoặc Keccak256 (dùng trong Ethereum) được áp dụng phổ biến. Một hàm băm mật mã học tiêu chuẩn bắt buộc phải đảm bảo 3 đặc tính cốt lõi sau:
 \begin{itemize}
     \item \textbf{Tính tất định (Determinism):} Với cùng một thông điệp đầu vào $M$, hàm băm luôn luôn trả về một kết quả đầu ra $H(M)$ duy nhất, không thay đổi qua các lần tính toán.
-    \item \textbf{Tính kháng tiền ảnh (Pre-image resistance / Hàm một chiều):} Khi biết trước một giá trị băm $Y$, về mặt toán học cực kỳ khó khăn (bất khả thi trong thời gian thực) để tìm lại thông điệp gốc $X$ sao cho $H(X) = Y$. Cách duy nhất là thử sai ngẫu nhiên (Brute-force).
-    \item \textbf{Tính kháng va chạm (Collision resistance):} Cực kỳ khó để tìm thấy hai thông điệp khác nhau hoàn toàn $X_1$ và $X_2$ mà khi băm lại cho ra cùng một kết quả ($H(X_1) = H(X_2)$). Ngoài ra, hàm băm có hiệu ứng tuyết lở (Avalanche effect): chỉ cần thay đổi 1 bit ở đầu vào, toàn bộ chuỗi đầu ra sẽ thay đổi hoàn toàn.
+    \item \textbf{Tính một chiều:} Khi biết trước một giá trị băm $Y$, về mặt toán học cực kỳ khó khăn (bất khả thi trong thời gian thực) để tìm lại thông điệp gốc $X$ sao cho $H(X) = Y$. Cách duy nhất là thử sai ngẫu nhiên (Brute-force).
+    \item \textbf{Tính kháng va chạm:} Cực kỳ khó để tìm thấy hai thông điệp khác nhau hoàn toàn $X_1$ và $X_2$ mà khi băm lại cho ra cùng một kết quả ($H(X_1) = H(X_2)$). Ngoài ra, hàm băm có hiệu ứng tuyết lở (Avalanche effect): chỉ cần thay đổi 1 bit ở đầu vào, toàn bộ chuỗi đầu ra sẽ thay đổi hoàn toàn.
 \end{itemize}
 
-\subsubsection{Chữ ký số (Digital Signatures) và Mã hóa bất đối xứng}
-Mã hóa bất đối xứng sử dụng một cặp khóa toán học liên kết chặt chẽ với nhau: Khóa bí mật (Private Key) dùng để tạo chữ ký số và Khóa công khai (Public Key) dùng để xác thực chữ ký hoặc định danh địa chỉ ví.
+\subsubsection{Chữ ký số và Mã hóa bất đối xứng}
+Mã hóa bất đối xứng sử dụng một cặp khóa toán học liên kết chặt chẽ với nhau: Private Key dùng để tạo chữ ký số và Khóa công khai (Public Key) dùng để xác thực chữ ký hoặc định danh địa chỉ ví.
 
 Trong Blockchain, thuật toán ECDSA (Elliptic Curve Digital Signature Algorithm) - Thuật toán chữ ký số dựa trên đường cong elliptic - được áp dụng để tối ưu hóa kích thước khóa và tốc độ tính toán so với RSA truyền thống.
 \begin{itemize}
@@ -206,10 +207,10 @@ Trong Blockchain, thuật toán ECDSA (Elliptic Curve Digital Signature Algorith
 \end{itemize}
 
 \subsubsection{Giao thức truyền bá thông điệp (Gossip Protocol)}
-Gossip Protocol (Giao thức dịch bệnh/tin đồn) là cơ chế giao tiếp chính giúp các nút trong mạng lưới P2P phi tập trung có thể phát tán thông tin (như giao dịch mới hoặc khối mới tạo) ra toàn mạng một cách nhanh chóng và tiết kiệm băng thông.
+Gossip Protocol là cơ chế giao tiếp chính giúp các nút trong mạng lưới P2P phi tập trung có thể phát tán thông tin (như giao dịch mới hoặc khối mới tạo) ra toàn mạng một cách nhanh chóng và tiết kiệm băng thông.
 \begin{itemize}
     \item \textbf{Nguyên lý hoạt động:} Khi một nút nhận được một thông điệp mới, nó sẽ chọn ngẫu nhiên một số lượng nút K hàng xóm (Fanout) để chuyển tiếp thông điệp đó. Các nút nhận tiếp theo lại lặp lại quy trình chọn ngẫu nhiên này.
-    \item \textbf{Hiệu quả:} Thông tin được lan truyền theo cấp số nhân (Exponential growth). Chỉ trong một thời gian cực ngắn với độ phức tạp thời gian là $O(\log N)$ (với $N$ là tổng số nút), toàn bộ mạng lưới rộng lớn sẽ đạt được trạng thái đồng bộ thông tin mà không cần một máy chủ điều phối trung tâm điều hướng luồng tin.
+    \item \textbf{Hiệu quả:} Thông tin được lan truyền theo cấp số nhân. Chỉ trong một thời gian cực ngắn với độ phức tạp thời gian là $O(\log N)$ (với $N$ là tổng số nút), toàn bộ mạng lưới rộng lớn sẽ đạt được trạng thái đồng bộ thông tin mà không cần một máy chủ điều phối trung tâm điều hướng luồng tin.
 \end{itemize}
 
 \subsection{Cơ chế đồng thuận (Consensus Mechanisms)}
@@ -223,8 +224,10 @@ Gossip Protocol (Giao thức dịch bệnh/tin đồn) là cơ chế giao tiếp
 \begin{itemize}
     \item \textbf{Proof of Work (PoW - Bằng chứng công việc):} Các nút (thợ đào) phải cạnh tranh giải một bài toán toán học cực khó bằng sức mạnh phần cứng máy tính (tìm giá trị Nonce thích hợp). Người đầu tiên giải được sẽ giành quyền đóng gói khối và nhận phần thưởng. PoW bảo mật rất cao nhưng tiêu tốn tài nguyên điện năng khổng lồ và tốc độ xử lý giao dịch rất chậm (Bitcoin chỉ khoảng 7 TPS).
     \item \textbf{Proof of Stake (PoS - Bằng chứng cổ phần):} Thay thế việc khai thác bằng phần cứng bằng việc đặt cọc (stake) tiền điện tử. Hệ thống dựa vào tỷ lệ cổ phần đặt cọc để chọn ngẫu nhiên nút có quyền tạo khối mới. PoS tiết kiệm năng lượng hơn PoW, tốc độ nhanh hơn, nhưng có nguy cơ dẫn đến việc tích lũy tài sản (người giàu càng giàu và nắm quyền kiểm soát mạng).
+    \item \textbf{Proof of Authority (PoA - Bằng chứng ủy quyền):} Thay vì sử dụng năng lực tính toán hay lượng tiền đặt cọc, cơ chế này dựa trên danh tính và uy tín của các nút xác thực (Validators). Chỉ một nhóm các nút đã được kiểm duyệt, định danh và cấp phép từ trước mới có quyền đóng gói khối. PoA mang lại tốc độ xử lý giao dịch (TPS) cực kỳ cao, gần như không tiêu tốn tài nguyên phần cứng và rất phù hợp cho các mạng Private hoặc Consortium Blockchain, tuy nhiên phải đánh đổi bằng việc mang tính tập trung cao hơn so với PoW hay PoS.
 \end{itemize}
 
+\newpage
 \subsubsection{Đồng thuận trong Private Blockchain (CFT và BFT)}
 Hệ thống chuỗi doanh nghiệp yêu cầu tốc độ xử lý cao và các nút tham gia đều được định danh rõ ràng. Do đó, họ áp dụng hai nhóm thuật toán tối ưu sau:
 
@@ -417,7 +420,7 @@ Cấu trúc phân quyền được thiết kế chặt chẽ nhằm đảm bảo
             \textbf{Thuộc tính} & \textbf{Mô tả chi tiết} \\ \hline
             \textbf{Tên Use Case} & Gửi giao dịch \\ \hline
             \textbf{Tác nhân} & Ứng dụng Client \\ \hline
-            \textbf{Tiền điều kiện} & Client có khóa bí mật (Private Key) hợp lệ. Kết nối mạng tới ít nhất 1 Nút đang mở. \\ \hline
+            \textbf{Tiền điều kiện} & Client có Private Key hợp lệ. Kết nối mạng tới ít nhất 1 Nút đang mở. \\ \hline
             \textbf{Luồng sự kiện chính} & 
             1. Client tạo dữ liệu giao dịch nghiệp vụ (ví dụ: tạo lô thuốc) và ký số bằng Private Key. \newline
             2. Client gửi gói tin giao dịch qua API/RPC tới Nút tiếp nhận. \newline
@@ -509,31 +512,135 @@ Cấu trúc phân quyền được thiết kế chặt chẽ nhằm đảm bảo
 
 \newpage
 \subsection{Yêu cầu phi chức năng}
-\newpage
+
+Các yêu cầu phi chức năng đặt ra các tiêu chuẩn về chất lượng, hiệu năng, tính bảo mật và khả năng vận hành của hệ thống Khoai Chain, đảm bảo hệ thống đáp ứng tốt các mục tiêu nghiên cứu và thực tiễn đặt ra.
+
+\begin{itemize}
+    \item \textbf{Hiệu năng và Tốc độ xử lý (Performance):} 
+    Do hệ thống được thiết kế tinh gọn, loại bỏ các cơ chế đồng thuận nặng nề (như Proof of Work) và sử dụng cơ chế lưu trữ Key-Value nhúng trực tiếp, thời gian đóng gói và xác thực một khối mới (Block) phải đạt tốc độ cao (độ trễ dưới 1 giây khi chạy trên hạ tầng cục bộ). Tốc độ xử lý giao dịch (TPS - Transactions Per Second) phải đáp ứng mượt mà các bài toán nghiệp vụ nội bộ của doanh nghiệp vừa và nhỏ.
+
+    \item \textbf{Tính bảo mật và Toàn vẹn dữ liệu (Security \& Integrity):} 
+    Toàn bộ các giao dịch phát sinh từ ứng dụng client bắt buộc phải được ký số thông qua thuật toán chữ ký số đường cong Elliptic (ECDSA/Ed25519). Các nút trong mạng lưới phải thực hiện xác thực chữ ký và kiểm tra tính hợp lệ của gói tin trước khi cho phép đưa vào Mempool hoặc ghi vào sổ cái. Dữ liệu trên chuỗi phải đảm bảo tính bất biến, không thể giả mạo hay chỉnh sửa nhờ cơ chế liên kết mã băm (Cryptographic Hash Linking).
+
+    \item \textbf{Khả năng mở rộng và Tính sẵn sàng của mạng P2P (Scalability \& Availability):} 
+    Mạng lưới ngang hàng phải hỗ trợ cơ chế tự động khám phá và kết nối giữa các nút thông qua giao thức Gossip Protocol. Khi có một nút mới gia nhập hoặc ngắt kết nối đột ngột, các nút còn lại phải tự động cập nhật topology mạng và đồng bộ trạng thái sổ cái một cách nhanh chóng mà không làm gián đoạn toàn bộ hệ thống.
+
+    \item \textbf{Tính tối ưu tài nguyên (Resource Efficiency):} 
+    Khác với các nền tảng blockchain công nghiệp đòi hỏi cấu hình phần cứng lớn, Khoai Chain phải tối ưu hóa mức tiêu thụ tài nguyên (CPU, RAM và dung lượng ổ cứng). Một node hệ thống phải có khả năng khởi chạy ổn định ngay cả trên các thiết bị máy tính cá nhân hoặc máy chủ ảo (VPS) cấu hình thấp, phục vụ hiệu quả cho môi trường thử nghiệm và giáo dục.
+
+    \item \textbf{Tính độc lập và Dễ triển khai (Deployability \& Maintainability):} 
+    Kiến trúc mã nguồn phải được tách biệt rõ ràng giữa tầng lõi (Core Blockchain) và bộ công cụ phát triển (SDK). Quá trình triển khai mạng lưới phải được tự động hóa thông qua công nghệ container hóa (Docker), cho phép người dùng khởi chạy và cấu hình toàn bộ hệ thống chỉ thông qua một vài thao tác lệnh cơ bản.
+\end{itemize}\newpage
 
 \section{Thiết kế Kiến trúc Khoai Chain}
+
 \subsection{Kiến trúc tổng thể hệ thống}
+Hệ thống Khoai Chain được thiết kế theo mô hình kiến trúc tích hợp (Monolithic Node Architecture) nhằm tối ưu hóa tài nguyên phần cứng và giảm thiểu độ trễ mạng trong môi trường doanh nghiệp. Mỗi một Node trong mạng lưới là một thực thể độc lập chứa đầy đủ ba phân hệ cốt lõi: Module Mạng ngang hàng (P2P), Lõi Blockchain (Core), và Hệ thống Quản lý Hợp đồng thông minh (Smart Contract Manager). 
+
+Khác với kiến trúc phân rã của Hyperledger Fabric, Khoai Chain đóng gói toàn bộ quy trình từ tiếp nhận giao dịch, đóng khối, cho đến cập nhật trạng thái cơ sở dữ liệu vào một tiến trình duy nhất. Hệ thống sử dụng cơ sở dữ liệu dạng Key-Value (như LevelDB/BadgerDB) được nhúng trực tiếp, giúp loại bỏ hoàn toàn chi phí I/O khi phải giao tiếp với các container cơ sở dữ liệu bên ngoài. Toàn bộ kiến trúc được module hóa rõ ràng, cho phép dễ dàng mở rộng và bảo trì.
+
 \subsection{Thiết kế Module P2P (Peer, Server, Handler, Message)}
+Module P2P chịu trách nhiệm duy trì kết nối mạng lưới và đồng bộ hóa trạng thái toàn cục giữa các nút. Kiến trúc P2P được chia thành 4 thành phần chính:
+\begin{itemize}
+    \item \textbf{Server \& Peer:} Thành phần \texttt{Server} quản lý vòng đời của các kết nối TCP/IP hoặc WebSockets, liên tục lắng nghe các yêu cầu từ mạng. Mỗi kết nối với một nút khác được trừu tượng hóa thành một đối tượng \texttt{Peer}, lưu trữ định danh (Public Key) và trạng thái đồng bộ hiện tại.
+    \item \textbf{Message:} Dữ liệu truyền tải giữa các nút được chuẩn hóa dưới định dạng JSON. Bản tin cơ sở bao gồm trường \texttt{Type} (như \texttt{MsgNewBlock}, \texttt{MsgSendChain}) và phần \texttt{Payload}. Thiết kế này giúp hệ thống dễ dàng phân loại và định tuyến gói tin.
+    \item \textbf{Handler:} Đóng vai trò là bộ định tuyến logic. Khi nhận được bản tin, Handler sẽ kiểm tra tính hợp lệ của dữ liệu (Unmarshal) và kích hoạt các quy trình tương ứng. Đặc biệt, trong quá trình đồng bộ chuỗi (\texttt{MsgSendChain}), Handler áp dụng cơ chế xác thực lô (Batch Validation). Nó sẽ rà soát tính liên tục của mảng các khối nhận được (đảm bảo \texttt{PrevBlockHash} khớp hoàn toàn) trước khi cho phép ghi đè xuống cơ sở dữ liệu, ngăn chặn tuyệt đối tình trạng rác hóa cơ sở dữ liệu.
+\end{itemize}
+\newpage
 \subsection{Thiết kế Core Blockchain}
 \subsubsection{Cấu trúc dữ liệu Block và Transaction}
+Cấu trúc dữ liệu của Khoai Chain được thiết kế tối giản nhưng vẫn tuân thủ nghiêm ngặt các tiêu chuẩn mật mã học:
+\begin{itemize}
+    \item \textbf{Transaction:} Là đơn vị thay đổi trạng thái cơ bản. Mỗi giao dịch chứa: \texttt{ID} (Mã băm giao dịch), \texttt{Timestamp}, và \textbf{Payload}. Trong Payload chứa thông tin định danh người gửi (\texttt{Sender}), tên Hợp đồng (\texttt{Contract}), Hàm gọi (\texttt{Function}), Tham số (\texttt{Args}), giá trị \texttt{Nonce} chống tấn công phát lại (Replay Attack), và Chữ ký số (\texttt{Signature}) sử dụng thuật toán Ed25519.
+    \item \textbf{Block:} Đóng gói các giao dịch hợp lệ. Khối bao gồm \texttt{Height} (Độ cao chuỗi), \texttt{Timestamp}, danh sách các Transaction, và \texttt{PrevBlockHash} (Mã băm của khối liền trước). Mã băm của khối hiện tại (\texttt{Hash}) được tính toán bằng thuật toán SHA-256 dựa trên việc tuần tự hóa (Serialize) toàn bộ dữ liệu khối, sau đó lưu trữ dưới dạng chuỗi hệ thập lục phân (Hex string). Điểm đặc biệt của kiến trúc là khối gốc (Genesis Block) được cấu hình mang tính tất định tuyệt đối (Deterministic), đảm bảo mọi nút khởi chạy đều chung một điểm gốc toán học.
+\end{itemize}
+
 \subsubsection{Luồng hoạt động của Mempool}
+Mempool (Memory Pool) là vùng nhớ đệm tạm thời chứa các giao dịch chưa được xác nhận. Luồng xử lý của Mempool được thiết kế cực kỳ chặt chẽ:
+\begin{enumerate}
+    \item \textbf{Tiếp nhận \& Xác thực sơ bộ:} Khi một giao dịch mới được gửi đến, Mempool kiểm tra định dạng chữ ký số Ed25519 bằng Public Key của người gửi. Nếu chữ ký sai lệch, giao dịch bị loại bỏ ngay tại viền mạng.
+    \item \textbf{Trạng thái chờ:} Các giao dịch hợp lệ được đẩy vào hàng đợi trong RAM để chuẩn bị đóng gói.
+    \item \textbf{Dọn dẹp tự động (Pruning):} Ngay khi một khối mới được đào thành công hoặc được đồng bộ từ mạng ngang hàng (\texttt{AddBlocks}), hệ thống sẽ quét qua danh sách các giao dịch nằm trong khối đó và gọi hàm \texttt{RemoveIncluded} để xóa chúng khỏi Mempool, giải phóng bộ nhớ và tránh việc thực thi trùng lặp.
+\end{enumerate}
+
 \subsection{Thiết kế hệ thống Smart Contract (Manager, Router, Interface)}
-\subsection{Thiết kế Cấu trúc lưu trữ dữ liệu (Database Storage)}
+Hệ thống Hợp đồng thông minh của Khoai Chain được thiết kế để tách biệt hoàn toàn trạng thái tính toán và trạng thái lưu trữ vĩnh viễn:
+\begin{itemize}
+    \item \textbf{Contract Manager:} Là trái tim của hệ thống thực thi, quản lý trạng thái máy tự động. Manager cung cấp hai cơ chế cốt lõi: \texttt{ExecuteOnly} và \texttt{Commit}. 
+    \item \textbf{Luồng thực thi an toàn:} Khi xác thực một lô giao dịch từ mạng gửi về, hệ thống sử dụng \texttt{ExecuteOnly} để tính toán các logic nghiệp vụ. Kết quả thay đổi (State changes) chỉ được lưu tạm vào vùng nhớ đệm (\texttt{stagingState}). Nhờ vậy, nếu có bất kỳ giao dịch nào trong lô gây ra lỗi (như vi phạm quyền truy cập, sai logic hợp đồng), toàn bộ tiến trình có thể bị hủy bỏ mà không làm "bẩn" cơ sở dữ liệu chính.
+    \item \textbf{Chốt trạng thái (Commit):} Chỉ khi toàn bộ các bước kiểm tra mật mã học và logic hợp đồng hoàn tất không có lỗi, hàm \texttt{Commit} mới được gọi. Lúc này, \texttt{stagingState} mới chính thức được ghi đè xuống cơ sở dữ liệu, đảm bảo tính nguyên tử (Atomicity) của hệ thống.
+    \item \textbf{Router:} Đóng vai trò ánh xạ (mapping) tên hợp đồng và tên hàm từ giao dịch tới các đoạn mã Go đã được biên dịch tương ứng trong hệ thống.
+\end{itemize}
+
+\subsection{Cơ chế đồng thuận}
+Do đặc thù hướng tới chuỗi doanh nghiệp nội bộ với các định danh có độ tin cậy nhất định, Khoai Chain không sử dụng mô hình bằng chứng công việc (PoW) nhằm tiết kiệm năng lượng. Thay vào đó, hệ thống tập trung vào tính toàn vẹn của chuỗi và luật chuỗi dài nhất (Longest Chain Rule) kết hợp với ràng buộc phả hệ tuyến tính:
+\begin{itemize}
+    \item \textbf{Đồng thuận dữ liệu gốc:} Các nút phải đạt được sự thống nhất tuyệt đối về khối Genesis. Bất kỳ sự khác biệt nào ở điểm khởi đầu đều khiến chuỗi bị mạng lưới từ chối.
+    \item \textbf{Luật gắn kết khối (Linear Ancestry Enforcement):} Cơ chế đồng thuận cốt lõi nằm ở bước kiểm duyệt khối. Khi một Nút đề xuất một lô khối mới, các Nút xác thực không chỉ kiểm tra độ cao (\texttt{Height}), mà bắt buộc phải dò ngược mã băm (\texttt{PrevBlockHash}) để đảm bảo khối mới thực sự kế thừa từ chính khối đỉnh hiện tại (\texttt{LastHash}) lưu trong cơ sở dữ liệu.
+    \item \textbf{Chống phân nhánh đa đầu (Multi-head Fork Prevention):} Nếu phát hiện khối mới không gắn với tổ tiên cục bộ, hoặc lô khối chứa mắt xích đứt gãy, hệ thống sẽ tự động vô hiệu hóa toàn bộ quá trình đồng bộ lô (\texttt{Atomic Batch Rejection}). Điều này giải quyết triệt để nguy cơ hệ thống bị rẽ nhánh song song, đảm bảo Sổ cái luôn duy trì ở trạng thái là một chuỗi đơn nhất và minh bạch.
+\end{itemize}
 \newpage
 
 \section{Hướng dẫn sử dụng và Triển khai}
-\subsection{Khởi tạo môi trường và cấu hình (khoai-config.yaml, get-env)}
+
+\subsection{Khởi tạo môi trường và cấu hình}
+Để hệ thống Khoai Chain vận hành trơn tru, người dùng cần chuẩn bị một môi trường tối giản bao gồm Docker Engine và Go runtime. Toàn bộ thiết lập mạng lưới được tập trung vào một tệp cấu hình duy nhất nhằm giảm tải công việc của quản trị viên (DevOps).
+
+\begin{itemize}
+    \item \textbf{Cấu hình mạng lưới qua \texttt{khoai-config.yaml}:} Tệp cấu hình này định nghĩa toàn bộ topology của mạng, bao gồm thông tin định danh của các nút (Node ID), địa chỉ IP, cổng giao tiếp P2P, và các tham số cốt lõi của chuỗi (như thời gian đóng khối tối đa, kích thước khối). Việc sử dụng định dạng YAML giúp các cấu hình trở nên trực quan và dễ dàng chỉnh sửa cho người dùng mới.
+    \item \textbf{Quản lý phiên bản (Versioning):} Để tránh rủi ro phân nhánh mạng do lệch logic xử lý khối, hệ thống kiểm soát phiên bản lõi chặt chẽ. Mỗi gói tin gửi đi qua mạng ngang hàng đều đính kèm cờ phiên bản (Version flag). Nếu phát hiện sự không tương thích (ví dụ: Node chạy Core v1.0 cố gắng kết nối với mạng v2.0), kết nối P2P sẽ bị từ chối ngay từ vòng bắt tay (handshake).
+\end{itemize}
+
 \subsection{Chạy thử nghiệm bằng CLI và Docker}
+Một trong những điểm mạnh cốt lõi của Khoai Chain là trải nghiệm dành cho nhà phát triển (Developer Experience - DX) thông qua sự kết hợp giữa kiến trúc container và công cụ dòng lệnh (CLI).
+
+\begin{itemize}
+    \item \textbf{Khởi chạy hạ tầng qua Docker:} Thay vì cài đặt từng thành phần cơ sở dữ liệu và biến môi trường phức tạp, người dùng chỉ cần một lệnh \texttt{docker-compose up -d}. Lệnh này sẽ tự động khởi tạo các container chứa lõi blockchain, ánh xạ (mount) các vùng nhớ dữ liệu cục bộ và thiết lập mạng nội bộ ảo (Docker network) cho các nút giao tiếp với nhau.
+    \item \textbf{Tương tác qua KhoaiChain SDK (CLI):} Để tương tác với mạng lưới, người dùng không cần phải chui trực tiếp vào (exec) từng container. Bộ SDK được thiết kế dưới dạng công cụ CLI tiện lợi, cho phép thực thi các lệnh gọi nhanh (như truy vấn số dư, gửi giao dịch). Bản chất các lệnh CLI này hoạt động như một cầu nối client gọn nhẹ, kết nối và chạy lệnh trực tiếp trên hạ tầng Docker đang vận hành ngầm, mang lại cảm giác mượt mà và trực quan.
+\end{itemize}
+
 \subsection{Kịch bản chạy thử nghiệm mẫu cho sinh viên}
+Nhằm phục vụ mục đích giáo dục, Khoai Chain cung cấp một kịch bản "Hello World" hoàn chỉnh, giúp sinh viên làm quen với kiến trúc blockchain chỉ trong vòng 15 phút:
+\begin{enumerate}
+    \item \textbf{Bước 1 - Khởi động mạng:} Sinh viên sử dụng tệp \texttt{docker-compose.yaml} mẫu để dựng một mạng private nhỏ gồm 3 nút ngang hàng.
+    \item \textbf{Bước 2 - Khởi tạo Hợp đồng thông minh:} Sử dụng mã nguồn Go mẫu do hệ thống cung cấp (ví dụ: Hợp đồng quản lý chứng chỉ học tập), sinh viên sẽ đọc hiểu cấu trúc interface của hợp đồng.
+    \item \textbf{Bước 3 - Triển khai và Gửi giao dịch:} Sử dụng công cụ CLI để gửi một giao dịch cấp phát chứng chỉ lên mạng. Màn hình console sẽ hiển thị luồng log trực tiếp: Giao dịch được vào Mempool $\rightarrow$ Đóng khối $\rightarrow$ Đồng bộ P2P.
+    \item \textbf{Bước 4 - Truy vấn kết quả:} Sinh viên sử dụng CLI kết nối ngẫu nhiên vào một nút khác trong mạng để truy vấn thông tin chứng chỉ vừa tạo, qua đó trực tiếp kiểm chứng đặc tính đồng bộ và phân tán của sổ cái.
+\end{enumerate}
+
 \subsection{Các chức năng đang phát triển và Hạn chế hiện tại}
+Dù đã đáp ứng được mô hình blockchain riêng biệt tinh gọn, Khoai Chain ở phiên bản hiện tại vẫn tồn tại một số giới hạn kỹ thuật cần được khắc phục trong các giai đoạn nghiên cứu tiếp theo:
+\begin{itemize}
+    \item \textbf{Khả năng tự động khám phá nút (Dynamic Node Discovery):} Mạng lưới hiện tại đang dựa vào cơ chế định tuyến tĩnh thông qua IP được cấu hình sẵn trong Docker. Trong tương lai, hệ thống cần tích hợp giao thức DHT (Distributed Hash Table) để các nút có thể tự động tìm thấy nhau trên môi trường Internet mở.
+    \item \textbf{Cơ chế Rollback và Reorg phức tạp:} Hệ thống hiện tại đã ngăn chặn được các nhánh rác khi đồng bộ, nhưng nếu mạng bị đứt gãy vật lý (Network Partition) và tạo ra hai chuỗi song song dài bằng nhau, Khoai Chain chưa có cơ chế hồi phục (Reorg) toàn diện để tự động gỡ bỏ các khối bị sai lệch và đưa toàn mạng về một trạng thái đồng thuận duy nhất.
+    \item \textbf{Bảo mật tính toán trong Smart Contract:} Môi trường thực thi Hợp đồng thông minh hiện chưa được cô lập tài nguyên tuyệt đối (Sandboxing). Một hợp đồng chứa vòng lặp vô hạn (Infinite Loop) do lập trình viên sơ suất có thể làm cạn kiệt tài nguyên CPU của tiến trình lõi. Cơ chế giới hạn tính toán (tương tự như "Gas Limit" của Ethereum) đang được nghiên cứu và phát triển.
+\end{itemize}
 \newpage
 
 % Phần kết luận không đánh số chương
 \section*{Kết luận}
 \addcontentsline{toc}{section}{Kết luận}
+
 \subsection*{Tóm tắt các chức năng đã chốt}
 \addcontentsline{toc}{subsection}{Tóm tắt các chức năng đã chốt}
+Đồ án đã hoàn thành mục tiêu nghiên cứu và xây dựng thành công Khoai Chain – một nền tảng blockchain riêng biệt (private blockchain) tinh gọn, giải quyết triệt để sự cồng kềnh của các hệ thống công nghiệp như Hyperledger Fabric. Tính đến giai đoạn hiện tại, hệ thống đã hoàn thiện và chốt hạ các chức năng cốt lõi sau:
+
+\begin{itemize}
+    \item \textbf{Lõi Blockchain (Core) \& Cơ sở dữ liệu nhúng:} Tự xây dựng toàn bộ cấu trúc dữ liệu Khối (Block) và Giao dịch (Transaction) từ con số không bằng ngôn ngữ Go. Tích hợp thành công cơ sở dữ liệu Key-Value nhúng để lưu trữ trạng thái sổ cái, đảm bảo tốc độ truy xuất I/O tối ưu mà không cần phụ thuộc vào hệ quản trị cơ sở dữ liệu bên ngoài.
+    \item \textbf{Mạng ngang hàng (P2P) đồng bộ:} Triển khai thành công giao thức truyền tải bản tin (Message Protocol) và xử lý đồng bộ chuỗi. Đã giải quyết triệt để rủi ro phân nhánh đa đầu (Multi-head fork) bằng cơ chế kiểm duyệt phả hệ tuyến tính nghiêm ngặt và đồng nhất hóa khối khởi thủy.
+    \item \textbf{Quản lý Mempool \& Hợp đồng thông minh:} Hoàn thiện luồng thực thi giao dịch an toàn với cơ chế tách biệt vùng nhớ đệm (\texttt{stagingState}). Hệ thống chỉ chốt (Commit) trạng thái sổ cái khi toàn bộ lô khối hợp lệ, loại bỏ rủi ro dữ liệu rác.
+    \item \textbf{Triển khai Container hóa \& CLI SDK:} Đóng gói thành công tiến trình Node vào môi trường Docker và xây dựng bộ công cụ giao diện dòng lệnh (KhoaiChain SDK), cho phép khởi chạy, quản trị và tương tác với mạng lưới chỉ qua các thao tác lệnh đơn giản.
+\end{itemize}
+
 \subsection*{Định hướng hoàn thiện mã nguồn}
 \addcontentsline{toc}{subsection}{Định hướng hoàn thiện mã nguồn}
+Dựa trên nền tảng kiến trúc đã thiết lập, để Khoai Chain thực sự sẵn sàng cho môi trường triển khai thực tế (Production) của doanh nghiệp, mã nguồn cần tiếp tục được nghiên cứu và nâng cấp ở các khía cạnh sau:
+
+\begin{itemize}
+    \item \textbf{Hoàn thiện cơ chế Reorg (Tái cấu trúc chuỗi):} Bổ sung thuật toán Rollback tự động. Trong trường hợp mạng lưới gặp sự cố chia cắt sinh ra các nhánh tạm thời, hệ thống phải có khả năng tự động so sánh, loại bỏ các khối thuộc nhánh ngắn hơn và đồng bộ lại theo nhánh chính thức khi mạng kết nối lại.
+    \item \textbf{Bảo vệ môi trường thực thi Hợp đồng (Sandboxing):} Cài đặt cơ chế giới hạn tài nguyên (như áp dụng \texttt{context.WithTimeout} trong Go) để tự động ngắt các hợp đồng thông minh bị lỗi vòng lặp vô hạn, ngăn chặn tình trạng cạn kiệt tài nguyên CPU (Denial of Service) của Node tiếp nhận.
+    \item \textbf{Tối ưu hóa khả năng lưu trữ (State Pruning):} Khi hệ thống vận hành lâu dài, kích thước sổ cái sẽ phình to. Cần nghiên cứu phát triển cơ chế nén hoặc dọn dẹp dữ liệu lịch sử  nhưng vẫn giữ lại các bằng chứng mật mã để đảm bảo các Node cấu hình thấp vẫn có thể tham gia lưu trữ mà không bị tràn bộ nhớ đệm.
+    \item \textbf{Cơ chế bảo mật dữ liệu riêng tư (Private Data):} Nâng cấp kiến trúc luồng dữ liệu để hỗ trợ các giao dịch ẩn danh giữa một nhóm Node cụ thể trong mạng. Điều này giúp các doanh nghiệp trong cùng chuỗi có thể giao dịch nội bộ mà không làm lộ chi tiết hợp đồng ra toàn bộ phần còn lại của mạng lưới.
+\end{itemize}
 
 \end{document}
