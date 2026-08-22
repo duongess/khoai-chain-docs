@@ -13,6 +13,7 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{tabularx}
+\usepackage{titletoc}
 
 
 \usetikzlibrary{calc}
@@ -23,14 +24,20 @@
 
 % Thiet lap kich thuoc le chuan cho trang bia
 \geometry{
-    top=20mm,
-    bottom=20mm,
-    left=30mm,
+    top=25mm,
+    bottom=25mm,
+    left=35mm,
     right=20mm,
 }
 
 % ==================== CẤU HÌNH TỰ ĐỘNG ĐÁNH SỐ (TITLESEC) ====================
 \usepackage{titlesec}
+
+% Gan so thu tu hinh anh di kem voi so section
+\counterwithin{figure}{section}
+
+% Gan so thu tu bang bieu di kem voi so section
+\counterwithin{table}{section}
 
 % Cấu hình cho Section -> Biến thành "Chương X: Tên Chương" và CĂN GIỮA
 \titleformat{\section}
@@ -52,6 +59,13 @@
   {  \thesubsubsection.\ }
   {0pt}
   {}
+
+\titlecontents{section}
+  [0em]
+  {\bfseries\vspace{1ex}}
+  {Chương \thecontentslabel: }
+  {}
+  {\titlerule*[0.3pc]{.}\contentspage}
 % ==============================================================================
 
 \begin{document}
@@ -75,7 +89,7 @@
         % Header truong va khoa
         \Large \textbf{ĐẠI HỌC XÂY DỰNG HÀ NỘI}\\[0.1cm]
         \large \textbf{KHOA CÔNG NGHỆ THÔNG TIN}\\[0.1cm]
-        \large {-------------o0o-------------}\\[1.5cm]
+        \large {-------------o0o-------------}\\[1cm]
 
         % Logo truong
         \vspace{1.5cm}
@@ -85,11 +99,13 @@
         % Ten cua bao cao/do an
         \Huge \textbf{ĐỒ ÁN TỐT NGHIỆP ĐẠI HỌC}\\[0.5cm]
         \large{NGÀNH: CÔNG NGHỆ THÔNG TIN}\\[0.5cm]
-        \Large \textit{Phát triển hệ thống blockchain riêng biệt cho một chuỗi doanh nghiệp (khoai-chain)}\\[5cm]
+        \Large \textit{Phát triển hệ thống blockchain riêng biệt cho một chuỗi doanh nghiệp (khoai-chain)}\\[2cm]
         
         % Can le phai cho thong tin nguoi thuc hien
-        \emph{Người Thực hiện:}\\
         Cấn Tất Dương\\[1cm]
+
+        GIÁO VIÊN HƯỚNG DẪN:\\
+        Nguyễn Việt Nhật 
         
         % Day cac thanh phan tiep theo xuong day trang
         \vfill
@@ -101,11 +117,56 @@
 
 % Mục lục tự động tạo dựa trên các section, subsection phía dưới
 \tableofcontents
+% Danh muc hinh ve
+\newpage
+\addcontentsline{toc}{section}{Danh mục hình vẽ}
+\listoffigures
+
+% Danh muc bang bieu
+\newpage
+\addcontentsline{toc}{section}{Danh mục bảng biểu}
+\listoftables
 \newpage
 
+\newpage
+\section*{Danh mục từ viết tắt, thuật ngữ}
+\addcontentsline{toc}{section}{Danh mục từ viết tắt, thuật ngữ}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|c|l|X|}
+        \hline
+        \textbf{STT} & \textbf{Từ viết tắt, thuật ngữ} & \textbf{Giải nghĩa} \\ \hline
+        1 & BFT & Dung sai lỗi Byzantine (Byzantine Fault Tolerance) \\ \hline
+        2 & CA & Tổ chức cấp chứng chỉ (Certificate Authority) \\ \hline
+        3 & CFT & Dung sai lỗi hỏng hóc (Crash Fault Tolerance) \\ \hline
+        4 & CLI & Giao diện dòng lệnh (Command-Line Interface) \\ \hline
+        5 & DLT & Công nghệ sổ cái phân tán (Distributed Ledger Technology) \\ \hline
+        6 & P2P & Mạng ngang hàng (Peer-to-Peer) \\ \hline
+        7 & PoS & Bằng chứng cổ phần (Proof of Stake) \\ \hline
+        8 & PoW & Bằng chứng công việc (Proof of Work) \\ \hline
+        9 & SDK & Bộ công cụ phát triển phần mềm (Software Development Kit) \\ \hline
+        10 & SME & Doanh nghiệp vừa và nhỏ (Small and Medium-sized Enterprises) \\ \hline
+        11 & TPS & Tốc độ xử lý giao dịch (Transactions Per Second) \\ \hline
+    \end{tabularx}
+\end{table}
+
+\newpage
 % Các phần không đánh số (Dùng dấu sao * và thêm thủ công vào mục lục)
 \section*{Lời nói đầu}
 \addcontentsline{toc}{section}{Lời nói đầu}
+
+Công nghệ sổ cái phân tán (Blockchain) đang chứng minh được tiềm năng to lớn trong việc giải quyết các bài toán minh bạch hóa và bảo mật dữ liệu. Tuy nhiên, việc ứng dụng các nền tảng công nghiệp đồ sộ vào môi trường doanh nghiệp vừa và nhỏ (SME) vẫn còn nhiều rào cản về hạ tầng và tài nguyên. Đó chính là động lực để em thực hiện đồ án "Phát triển hệ thống blockchain riêng biệt cho một chuỗi doanh nghiệp (Khoai Chain)", với mục tiêu xây dựng một kiến trúc lõi tinh gọn nhưng vẫn đảm bảo tính toàn vẹn và bất biến của dữ liệu.
+
+Để hoàn thành được đồ án này, em xin gửi lời cảm ơn chân thành đến các thầy cô trong Khoa Công nghệ Thông tin - Trường Đại học Xây dựng Hà Nội đã tận tình giảng dạy và trang bị cho em những kiến thức nền tảng quý báu trong suốt bốn năm học vừa qua.
+
+Đặc biệt, em xin bày tỏ lòng biết ơn sâu sắc đến Thầy Nguyễn Việt Nhật. Những bài giảng của thầy trong học phần An toàn bảo mật thông tin, cụ thể là việc đi sâu vào thuật toán mã hóa RSA, đã mở ra cho em những hiểu biết cốt lõi đầu tiên về hệ thống mật mã bất đối xứng (khóa công khai và khóa bí mật). Nền tảng tư duy vững chắc về bảo mật đó chính là kim chỉ nam giúp em có khả năng tự nghiên cứu, áp dụng chữ ký số đường cong Elliptic (Ed25519) và trực tiếp lập trình cơ chế xác thực giao dịch an toàn cho lõi hệ thống Khoai Chain ngày hôm nay.
+
+Bên cạnh đó, em cũng xin gửi lời cảm ơn đến gia đình và những người bạn đã luôn đồng hành, hỗ trợ và đóng góp ý kiến trong suốt quá trình phát triển mã nguồn cũng như hoàn thiện báo cáo. 
+
+Mặc dù đã nỗ lực hết mình, nhưng do giới hạn về mặt thời gian và kinh nghiệm thực tiễn, đồ án chắc chắn không tránh khỏi những thiếu sót. Em rất mong nhận được sự đánh giá và những lời góp ý quý báu từ Hội đồng bảo vệ để hệ thống được hoàn thiện hơn trong tương lai.
+
 \newpage
 
 % ==================== THÂN BÀI: TỰ ĐỘNG ĐÁNH SỐ HOÀN TOÀN ====================
