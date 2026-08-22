@@ -111,6 +111,14 @@
 % ==================== THÂN BÀI: TỰ ĐỘNG ĐÁNH SỐ HOÀN TOÀN ====================
 
 \section{Giới thiệu đề tài} % Máy tự hiện: Chương 1: Giới thiệu đề tài (Căn giữa)
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Image/blockchain.png}
+    \caption{Công nghệ blockchain}
+    \label{fig:usecase_tongquat}
+\end{figure}
+
 \subsection{Lý do chọn đề tài}
 
 \subsubsection{Sự phức tạp và cồng kềnh của các nền tảng blockchain hiện tại}
@@ -133,7 +141,7 @@ Hệ thống được thiết kế để giảm thiểu tối đa các bước t
 
 \subsubsection{Xây dựng lõi blockchain chuyên biệt hóa cho chuỗi doanh nghiệp}
 Mục tiêu trọng tâm là phát triển một lõi (core blockchain) được tinh chỉnh trực tiếp cho các luồng nghiệp vụ nội bộ. Kiến trúc lõi sẽ tự chủ hoàn toàn các thành phần như quản lý mempool, đồng bộ block, giao thức P2P và định tuyến giao dịch (contract router). Bằng cách cung cấp một môi trường thực thi được cô lập và tách biệt qua bộ SDK, các nhà phát triển có thể trực tiếp ánh xạ các quy tắc kinh doanh thành Hợp đồng thông minh mà không làm ảnh hưởng đến tính ổn định của toàn mạng. Khác với kiến trúc phục vụ đám đông, hệ thống lõi này chuyên biệt hóa cho một nhóm các định chế hoặc đối tác kinh doanh đã được xác thực, đảm bảo giao dịch được lưu vết minh bạch, nhất quán nhưng vẫn nằm trong phạm vi giới hạn an toàn của chuỗi.
-
+\newpage
 \subsection{Đối tượng và phạm vi nghiên cứu}
 % Xác định rõ đối tượng kỹ thuật và ranh giới giới hạn của đề tài
 Đối tượng nghiên cứu của đề tài là công nghệ sổ cái phân tán (Distributed Ledger Technology), mạng ngang hàng (P2P), và cơ chế thực thi Hợp đồng thông minh (Smart Contract). 
@@ -143,7 +151,6 @@ Phạm vi nghiên cứu tập trung vào việc thiết kế và xây dựng lõ
 \newpage
 
 \section{Cơ sở lý thuyết và Công nghệ nền tảng}
-
 
 \subsection{Tổng quan về công nghệ Blockchain}
 
@@ -197,10 +204,16 @@ Trong Blockchain, thuật toán ECDSA (Elliptic Curve Digital Signature Algorith
     \item \textbf{Quy trình ký (Signing):} Khi người dùng muốn thực hiện giao dịch, họ dùng Private Key của mình kết hợp với mã băm của nội dung giao dịch thông qua thuật toán ECDSA để tạo ra một chuỗi chữ ký số ($Sig$).
     \item \textbf{Quy trình xác thực (Verification):} Các nút trong mạng nhận được giao dịch sẽ dùng Public Key của người gửi (được công khai) để giải mã và kiểm tra tính hợp lệ của $Sig$. Quy trình này chứng minh người gửi sở hữu tài khoản và đồng ý chuyển tiền mà không cần tiết lộ Private Key cho mạng lưới, ngăn chặn hoàn toàn việc giả mạo giao dịch.
 \end{itemize}
-
+\newpage
 \subsection{Mạng ngang hàng (Peer-to-Peer Network)}
 
 \subsubsection{Kiến trúc Client-Server so với P2P}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Image/p2p.png}
+    \caption{Client/Server vs P2P}
+    \label{fig:usecase_tongquat}
+\end{figure}
 \begin{itemize}
     \item \textbf{Kiến trúc Client-Server:} Dữ liệu tập trung hoàn toàn tại hệ thống máy chủ (Server). Các máy trạm (Client) muốn tương tác đều phải gửi yêu cầu về Server. Kiến trúc này chịu nhược điểm SPOF (Single Point of Failure): nếu máy chủ bị sập, bị tấn công DDoS, hoặc bị hack dữ liệu, toàn bộ hệ thống sẽ tê liệt và dữ liệu có nguy cơ bị thao túng hoàn toàn.
     \item \textbf{Kiến trúc P2P (Peer-to-Peer):} Mạng lưới bao gồm các nút (Peer) có vai trò và quyền hạn ngang hàng nhau. Mỗi nút vừa hoạt động như một Client (yêu cầu dữ liệu) vừa như một Server (cung cấp, lưu trữ, xác thực dữ liệu). Khi một số nút bị ngắt kết nối hoặc bị tấn công, hệ thống vẫn vận hành bình thường nhờ các bản sao tại các nút còn lại, loại bỏ hoàn toàn bài toán SPOF.
@@ -296,7 +309,7 @@ Mặc dù kiến trúc Execute-Order-Validate mang lại hiệu năng cao và ph
     \item \textbf{Tích hợp vai trò Node (Node Consolidation):} Thay vì phân rã hệ thống thành các nút độc lập (như Orderer Node để sắp xếp, Peer Node để lưu trữ, và CA để cấp phép), Khoai Chain tích hợp tất cả các chức năng đồng thuận, định tuyến giao dịch và lưu trữ vào một module Node duy nhất. Điều này giúp giảm thiểu độ trễ giao tiếp qua mạng lưới và tiết kiệm tối đa RAM/CPU.
     \item \textbf{Cơ chế lưu trữ nhúng (Embedded Storage):} Thay vì yêu cầu thiết lập các container cơ sở dữ liệu bên ngoài (như CouchDB), Khoai Chain sử dụng cơ sở dữ liệu dạng Key-Value được nhúng trực tiếp vào lõi hệ thống. Quá trình đồng bộ trạng thái sổ cái diễn ra nội bộ, loại bỏ hoàn toàn các cấu hình kết nối mạng phức tạp giữa Core và Database.
     \item \textbf{Tách biệt hoàn toàn SDK Hợp đồng thông minh:} Mã nguồn thực thi (Smart Contract) được tách ra khỏi lõi mạng P2P thông qua bộ công cụ \texttt{khoaichain-sdk}. Sự thay đổi này giúp các nhà phát triển và sinh viên chỉ cần kế thừa các interface có sẵn để viết logic nghiệp vụ, biên dịch và nạp vào mạng lưới mà không cần hiểu sâu về kiến trúc lõi của Khoai Chain.
-    \item \textbf{Lược bỏ cơ chế kinh tế (Tokenomics):} Do hệ thống phục vụ chuỗi doanh nghiệp nội bộ đã có sự tin tưởng và định danh nhất định, toàn bộ cơ chế khai thác (Mining), phí giao dịch (Gas fee) và phần thưởng khối đều được loại bỏ để tăng tốc độ đóng gói giao dịch.
+    \item \textbf{Lược bỏ cơ chế kinh tế:} Do hệ thống phục vụ chuỗi doanh nghiệp nội bộ đã có sự tin tưởng và định danh nhất định, toàn bộ cơ chế khai thác, phí giao dịch và phần thưởng khối đều được loại bỏ để tăng tốc độ đóng gói giao dịch.
 \end{itemize}
 \newpage
 \subsubsection{So sánh với Hyperledger Fabric}
@@ -563,7 +576,7 @@ Mempool (Memory Pool) là vùng nhớ đệm tạm thời chứa các giao dịc
     \item \textbf{Dọn dẹp tự động (Pruning):} Ngay khi một khối mới được đào thành công hoặc được đồng bộ từ mạng ngang hàng (\texttt{AddBlocks}), hệ thống sẽ quét qua danh sách các giao dịch nằm trong khối đó và gọi hàm \texttt{RemoveIncluded} để xóa chúng khỏi Mempool, giải phóng bộ nhớ và tránh việc thực thi trùng lặp.
 \end{enumerate}
 
-\subsection{Thiết kế hệ thống Smart Contract (Manager, Router, Interface)}
+\subsection{Thiết kế hệ thống Smart Contract}
 Hệ thống Hợp đồng thông minh của Khoai Chain được thiết kế để tách biệt hoàn toàn trạng thái tính toán và trạng thái lưu trữ vĩnh viễn:
 \begin{itemize}
     \item \textbf{Contract Manager:} Là trái tim của hệ thống thực thi, quản lý trạng thái máy tự động. Manager cung cấp hai cơ chế cốt lõi: \texttt{ExecuteOnly} và \texttt{Commit}. 
