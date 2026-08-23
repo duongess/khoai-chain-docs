@@ -195,7 +195,7 @@ Mặc dù đã nỗ lực hết mình, nhưng do giới hạn về mặt thời 
     \centering
     \includegraphics[width=1\textwidth]{Image/blockchain.png}
     \caption{Công nghệ blockchain}
-    \label{fig:usecase_tongquat}
+    \label{fig:blockchain}
 \end{figure}
 
 \subsection{Lý do chọn đề tài}
@@ -291,7 +291,7 @@ Trong Blockchain, thuật toán ECDSA - Thuật toán chữ ký số dựa trên
     \centering
     \includegraphics[width=1\textwidth]{Image/p2p.png}
     \caption{Client/Server vs P2P}
-    \label{fig:usecase_tongquat}
+    \label{fig:p2p}
 \end{figure}
 \begin{itemize}
     \item \textbf{Kiến trúc Client-Server:} Dữ liệu tập trung hoàn toàn tại hệ thống máy chủ (Server). Các máy trạm (Client) muốn tương tác đều phải gửi yêu cầu về Server. Kiến trúc này chịu nhược điểm SPOF (Single Point of Failure): nếu máy chủ bị sập, bị tấn công DDoS, hoặc bị hack dữ liệu, toàn bộ hệ thống sẽ tê liệt và dữ liệu có nguy cơ bị thao túng hoàn toàn.
@@ -343,7 +343,7 @@ Hệ thống chuỗi doanh nghiệp yêu cầu tốc độ xử lý cao và các
 \subsubsection{Khái niệm và đặc tính tất định (Determinism)}
 Hợp đồng thông minh là một chương trình máy tính (mã nguồn mã hóa) được triển khai trực tiếp và lưu trữ vĩnh viễn trên nền tảng Blockchain. Nó tự động thực thi các điều khoản thỏa thuận giữa các bên khi các điều kiện logic định trước được thỏa mãn mà không cần thông qua bên trung gian thứ ba.
 
-\textbf{Đặc tính tất định (Determinism):} Đây là đặc tính bắt buộc tối thượng của Smart Contract. Với cùng một trạng thái sổ cái đầu vào (State input) và cùng một tham số truyền vào hàm, việc thực thi Smart Contract tại bất kỳ nút nào trong mạng lưới, tại bất kỳ thời điểm nào, cũng đều phải trả về một kết quả đầu ra giống nhau 100\% và cập nhật trạng thái sổ cái đồng nhất. Do đó, các hàm lấy thời gian thực của máy cục bộ, hay hàm tạo số ngẫu nhiên thuần túy đều bị cấm sử dụng trực tiếp trong mã nguồn của Smart Contract.
+\textbf{Đặc tính tất định:} Đây là đặc tính bắt buộc tối thượng của Smart Contract. Với cùng một trạng thái sổ cái đầu vào (State input) và cùng một tham số truyền vào hàm, việc thực thi Smart Contract tại bất kỳ nút nào trong mạng lưới, tại bất kỳ thời điểm nào, cũng đều phải trả về một kết quả đầu ra giống nhau 100\% và cập nhật trạng thái sổ cái đồng nhất. Do đó, các hàm lấy thời gian thực của máy cục bộ, hay hàm tạo số ngẫu nhiên thuần túy đều bị cấm sử dụng trực tiếp trong mã nguồn của Smart Contract.
 
 \subsubsection{Vòng đời thực thi của Hợp đồng thông minh}
 Vòng đời thực thi của một Hợp đồng thông minh trải qua 5 bước nghiêm ngặt:
@@ -355,11 +355,18 @@ Vòng đời thực thi của một Hợp đồng thông minh trải qua 5 bư�
     \item \textbf{Cập nhật trạng thái:} Sau khi tính toán xong, kết quả thực thi tạo ra một trạng thái mới (World State thay đổi). Trạng thái mới này được phân phối đồng bộ, xác nhận qua cơ chế đồng thuận mạng và ghi vĩnh viễn vào sổ cái phân tán.
 \end{enumerate}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Image/smart-contarct.png}
+    \caption{Vòng đời của smart-contract}
+    \label{fig:smart-contract}
+\end{figure}
+
+\newpage
 \subsection{Phân tích kiến trúc nền tảng Hyperledger Fabric}
 
 \subsubsection{Mô hình Execute-Order-Validate}
 Các mạng Blockchain truyền thống như Bitcoin hay Ethereum sử dụng mô hình Thứ tự trước - Thực thi sau. Nghĩa là các giao dịch được gom lại, sắp xếp thứ tự và đóng khối trước bởi các thợ đào (Order), sau đó tất cả các nút trong mạng đồng loạt tải khối về rồi mới tự chạy thực thi lại mã nguồn để cập nhật sổ cái (Execute). Mô hình này bộc lộ điểm nghẽn hiệu năng nghiêm ngặt (tất cả các nút đều phải chạy lại mọi thứ) và không đảm bảo tính bảo mật thương mại.
-\newpage
 Hyperledger Fabric kiến tạo một kiến trúc đột phá hoàn toàn: Thực thi trước - Sắp xếp sau - Kiểm tra lại \cite{fabric}. Quy trình gồm 3 bước riêng biệt phân rã nhiệm vụ cho từng loại nút chuyên biệt:
 \begin{itemize}
     \item \textbf{Execute (Thực thi/Ký duyệt):} Ứng dụng gửi đề xuất giao dịch đến các nút ký duyệt chỉ định trước (Endorsing Nodes). Các nút này chạy thử nghiệm mã Smart Contract (gọi là Chaincode) một cách độc lập trong môi trường bảo mật (Docker) để tạo ra kết quả đọc/ghi (Read-Write Set) và ký số xác nhận mà không ghi ngay vào sổ cái.
