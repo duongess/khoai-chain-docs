@@ -18,7 +18,7 @@
 
 
 \usetikzlibrary{calc}
-\setcounter{tocdepth}{3} % Cho phép Mục lục hiển thị đến cấp 3 (1.1.1)
+\setcounter{tocdepth}{3}
 \renewcommand{\labelitemi}{$-$}
 \renewcommand{\labelitemii}{$+$}
 
@@ -179,7 +179,7 @@ Công nghệ sổ cái phân tán (Blockchain) đang chứng minh được tiề
 
 Để hoàn thành được đồ án này, em xin gửi lời cảm ơn chân thành đến các thầy cô trong Khoa Công nghệ Thông tin - Trường Đại học Xây dựng Hà Nội đã tận tình giảng dạy và trang bị cho em những kiến thức nền tảng quý báu trong suốt bốn năm học vừa qua.
 
-Đặc biệt, em xin bày tỏ lòng biết ơn sâu sắc đến Thầy Nguyễn Việt Nhật. Những bài giảng của thầy trong học phần An toàn bảo mật thông tin, cụ thể là việc đi sâu vào thuật toán mã hóa RSA, đã mở ra cho em những hiểu biết cốt lõi đầu tiên về hệ thống mật mã bất đối xứng (khóa công khai và khóa bí mật). Nền tảng tư duy vững chắc về bảo mật đó chính là kim chỉ nam giúp em có khả năng tự nghiên cứu, áp dụng chữ ký số đường cong Elliptic (Ed25519) và trực tiếp lập trình cơ chế xác thực giao dịch an toàn cho lõi hệ thống Khoai Chain ngày hôm nay.
+Đặc biệt, em xin bày tỏ lòng biết ơn sâu sắc đến Thầy Nguyễn Việt Nhật. Những bài giảng của thầy trong học phần An toàn bảo mật thông tin, cụ thể là việc đi sâu vào thuật toán mã hóa RSA, đã mở ra cho em những hiểu biết cốt lõi đầu tiên về hệ thống mật mã bất đối xứng (khóa công khai và khóa bí mật). Nền tảng tư duy vững chắc về bảo mật đó chính là kim chỉ nam giúp em có khả năng tự nghiên cứu, áp dụng chữ ký số đường cong Elliptic (Ed25519) \cite{bernstein} và trực tiếp lập trình cơ chế xác thực giao dịch an toàn cho lõi hệ thống Khoai Chain ngày hôm nay.
 
 Bên cạnh đó, em cũng xin gửi lời cảm ơn đến gia đình và những người bạn đã luôn đồng hành, hỗ trợ và đóng góp ý kiến trong suốt quá trình phát triển mã nguồn cũng như hoàn thiện báo cáo. 
 
@@ -202,7 +202,7 @@ Mặc dù đã nỗ lực hết mình, nhưng do giới hạn về mặt thời 
 
 \subsubsection{Sự phức tạp và cồng kềnh của các nền tảng blockchain hiện tại}
 % Lồng ghép bài toán chuỗi cung ứng thuốc vào để làm dẫn chứng
-Từ thực tiễn triển khai các bài toán nghiệp vụ phức tạp, điển hình như hệ thống quản lý chuỗi cung ứng thuốc trên nền tảng như Hyperledger Fabric, công nghệ này bộc lộ rõ những rào cản lớn về mặt kỹ thuật và vận hành. Cụ thể, kiến trúc của Fabric đòi hỏi tài nguyên phần cứng đồ sộ để duy trì các thành phần độc lập (như Orderer, Peer, CA) và yêu cầu thiết lập hệ thống chứng chỉ số phức tạp. Quá trình cấu hình, gỡ lỗi và triển khai mạng lưới tốn rất nhiều thời gian, trở thành một nút thắt lớn (bottleneck) cho các nhà phát triển. Sự cồng kềnh này hoàn toàn không phù hợp với các mô hình thử nghiệm nhanh, các dự án giáo dục, hoặc các doanh nghiệp có hạ tầng hạn chế, từ đó đặt ra yêu cầu cấp thiết về một nền tảng blockchain tinh gọn hơn nhưng vẫn đảm bảo tính bất biến của dữ liệu.
+Từ thực tiễn triển khai các bài toán nghiệp vụ phức tạp, điển hình như hệ thống quản lý chuỗi cung ứng thuốc trên nền tảng như Hyperledger Fabric, công nghệ này bộc lộ rõ những rào cản lớn về mặt kỹ thuật và vận hành. Cụ thể, kiến trúc của Fabric đòi hỏi tài nguyên phần cứng đồ sộ để duy trì các thành phần độc lập (như Orderer, Peer, CA) và yêu cầu thiết lập hệ thống chứng chỉ số phức tạp \cite{fabric}. Quá trình cấu hình, gỡ lỗi và triển khai mạng lưới tốn rất nhiều thời gian, trở thành một nút thắt lớn (bottleneck) cho các nhà phát triển. Sự cồng kềnh này hoàn toàn không phù hợp với các mô hình thử nghiệm nhanh, các dự án giáo dục, hoặc các doanh nghiệp có hạ tầng hạn chế, từ đó đặt ra yêu cầu cấp thiết về một nền tảng blockchain tinh gọn hơn nhưng vẫn đảm bảo tính bất biến của dữ liệu.
 
 \subsubsection{Nhu cầu về một hệ thống blockchain thử nghiệm}
 % Tập trung vào môi trường giáo dục và phát triển, tách biệt SDK và Core
@@ -234,7 +234,7 @@ Phạm vi nghiên cứu tập trung vào việc thiết kế và xây dựng lõ
 \subsection{Tổng quan về công nghệ Blockchain}
 
 \subsubsection{Khái niệm và nguyên lý hoạt động cơ bản}
-Blockchain là một công nghệ sổ cái phân tán (Distributed Ledger Technology - DLT) cho phép ghi lại các giao dịch một cách an toàn, minh bạch và không thể đảo ngược trên một mạng lưới máy tính ngang hàng (P2P). Thay vì lưu trữ dữ liệu tại một máy chủ trung tâm, dữ liệu của blockchain được nhân bản và đồng bộ hóa tại tất cả các nút (nodes) tham gia mạng lưới.
+Blockchain là một công nghệ sổ cái phân tán (Distributed Ledger Technology - DLT) cho phép ghi lại các giao dịch một cách an toàn, minh bạch và không thể đảo ngược trên một mạng lưới máy tính ngang hàng (P2P). Thay vì lưu trữ dữ liệu tại một máy chủ trung tâm, dữ liệu của blockchain được nhân bản và đồng bộ hóa tại tất cả các nút tham gia mạng lưới \cite{antonopoulos}.
 
 Cấu trúc lưu trữ dữ liệu của Blockchain bao gồm chuỗi các khối (Blocks) liên kết tuyến tính với nhau theo thời gian. Mỗi khối chứa hai thành phần chính:
 \begin{itemize}
@@ -242,7 +242,7 @@ Cấu trúc lưu trữ dữ liệu của Blockchain bao gồm chuỗi các khố
     \begin{itemize}
         \item \textbf{Version:} Phiên bản của giao thức blockchain.
         \item \textbf{Previous Hash:} Mã băm của toàn bộ header khối trước đó. Đây là sợi xích toán học liên kết các khối. Nếu dữ liệu khối trước bị sửa đổi, mã băm này thay đổi và làm gãy toàn bộ chuỗi phía sau.
-        \item \textbf{Merkle Root Hash:} Mã băm gốc của cây Merkle, đại diện cho toàn bộ giao dịch trong khối.
+        \item \textbf{Merkle Root Hash:} Mã băm gốc của cây Merkle, đại diện cho toàn bộ giao dịch trong khối \cite{antonopoulos}.
         \item \textbf{Timestamp:} Thời gian khối được tạo ra.
         \item \textbf{Nonce / Bits:} Các tham số phục vụ cho cơ chế đồng thuận (ví dụ trong PoW).
     \end{itemize}
@@ -251,7 +251,7 @@ Cấu trúc lưu trữ dữ liệu của Blockchain bao gồm chuỗi các khố
 
 \subsubsection{Các đặc trưng cốt lõi của Blockchain}
 \begin{itemize}
-    \item \textbf{Tính phân tán (Decentralization):} Hệ thống loại bỏ thực thể trung tâm quản lý. Quyền lực ghi và xác thực sổ cái được chia đều cho các nút trong mạng theo luật đồng thuận, giúp loại bỏ điểm lỗi duy nhất (Single Point of Failure - SPOF).
+    \item \textbf{Tính phân tán (Decentralization):} Hệ thống loại bỏ thực thể trung tâm quản lý. Quyền lực ghi và xác thực sổ cái được chia đều cho các nút trong mạng theo luật đồng thuận, giúp loại bỏ điểm lỗi duy nhất (SPOF) \cite{antonopoulos}.
     \item \textbf{Tính minh bạch (Transparency):} Mọi tài khoản tham gia mạng lưới (đặc biệt là Public) đều có quyền truy cập, tra cứu và kiểm toán toàn bộ lịch sử giao dịch từ khối khởi thủy (Genesis Block) đến khối hiện tại.
     \item \textbf{Tính bất biến (Immutability):} Dữ liệu một khi đã được đồng thuận ghi vào chuỗi thì không thể sửa đổi hoặc xóa bỏ. Muốn thay đổi một khối, kẻ tấn công phải thay đổi tất cả các khối sau nó và chiếm trên 51\% sức mạnh toán học hoặc quyền kiểm soát mạng lưới (điều này bất khả thi về mặt chi phí trong các mạng lớn).
     \item \textbf{Khả năng truy xuất (Traceability):} Nhờ cơ chế liên kết mã băm và mốc thời gian (timestamp) cố định, mọi thực thể dữ liệu hoặc tài sản số hóa lưu trữ trên blockchain đều có thể được truy vết nguồn gốc dịch chuyển một cách chính xác qua từng địa chỉ ví.
@@ -272,7 +272,7 @@ Hàm băm mật mã là một thuật toán toán học chuyển đổi một đ
 \begin{itemize}
     \item \textbf{Tính tất định (Determinism):} Với cùng một thông điệp đầu vào $M$, hàm băm luôn luôn trả về một kết quả đầu ra $H(M)$ duy nhất, không thay đổi qua các lần tính toán.
     \item \textbf{Tính một chiều:} Khi biết trước một giá trị băm $Y$, về mặt toán học cực kỳ khó khăn (bất khả thi trong thời gian thực) để tìm lại thông điệp gốc $X$ sao cho $H(X) = Y$. Cách duy nhất là thử sai ngẫu nhiên (Brute-force).
-    \item \textbf{Tính kháng va chạm:} Cực kỳ khó để tìm thấy hai thông điệp khác nhau hoàn toàn $X_1$ và $X_2$ mà khi băm lại cho ra cùng một kết quả ($H(X_1) = H(X_2)$). Ngoài ra, hàm băm có hiệu ứng tuyết lở (Avalanche effect): chỉ cần thay đổi 1 bit ở đầu vào, toàn bộ chuỗi đầu ra sẽ thay đổi hoàn toàn.
+    \item \textbf{Tính kháng va chạm:} Cực kỳ khó để tìm thấy hai thông điệp khác nhau hoàn toàn $X_1$ và $X_2$ mà khi băm lại cho ra cùng một kết quả ($H(X_1) = H(X_2)$). Ngoài ra, hàm băm có hiệu ứng tuyết lở (Avalanche effect): chỉ cần thay đổi 1 bit ở đầu vào, toàn bộ chuỗi đầu ra sẽ thay đổi hoàn toàn \cite{stallings}.
 \end{itemize}
 
 \subsubsection{Chữ ký số và Mã hóa bất đối xứng}
@@ -302,19 +302,19 @@ Trong Blockchain, thuật toán ECDSA - Thuật toán chữ ký số dựa trên
 Gossip Protocol là cơ chế giao tiếp chính giúp các nút trong mạng lưới P2P phi tập trung có thể phát tán thông tin (như giao dịch mới hoặc khối mới tạo) ra toàn mạng một cách nhanh chóng và tiết kiệm băng thông.
 \begin{itemize}
     \item \textbf{Nguyên lý hoạt động:} Khi một nút nhận được một thông điệp mới, nó sẽ chọn ngẫu nhiên một số lượng nút K hàng xóm (Fanout) để chuyển tiếp thông điệp đó. Các nút nhận tiếp theo lại lặp lại quy trình chọn ngẫu nhiên này.
-    \item \textbf{Hiệu quả:} Thông tin được lan truyền theo cấp số nhân. Chỉ trong một thời gian cực ngắn với độ phức tạp thời gian là $O(\log N)$ (với $N$ là tổng số nút), toàn bộ mạng lưới rộng lớn sẽ đạt được trạng thái đồng bộ thông tin mà không cần một máy chủ điều phối trung tâm điều hướng luồng tin.
+    \item \textbf{Hiệu quả:} Thông tin được lan truyền theo cấp số nhân. Chỉ trong một thời gian cực ngắn với độ phức tạp thời gian là $O(\log N)$ \cite{demers} (với $N$ là tổng số nút), toàn bộ mạng lưới rộng lớn sẽ đạt được trạng thái đồng bộ thông tin mà không cần một máy chủ điều phối trung tâm điều hướng luồng tin.
 \end{itemize}
 
 \subsection{Cơ chế đồng thuận (Consensus Mechanisms)}
 
 \subsubsection{Bài toán Tướng Byzantine (Byzantine Generals Problem)}
-Được đặt ra bởi Lamport, Shostak và Pease vào năm 1982, bài toán mô tả một nhóm các vị tướng Byzantine vây hãm một thành phố địch. Họ liên lạc với nhau chỉ bằng tin nhắn messenger. Các tướng phải đồng thuận về một kế hoạch duy nhất: cùng Tấn công hoặc cùng Rút lui. Nếu có một vài tướng phản bội (hoặc tin nhắn bị thất lạc), họ sẽ cố tình gửi các thông điệp mâu thuẫn (gửi "Tấn công" cho tướng này nhưng gửi "Rút lui" cho tướng khác) nhằm làm chia rẽ và thất bại quân đội.
+Được đặt ra bởi Lamport, Shostak và Pease vào năm 1982 \cite{lamport}, bài toán mô tả một nhóm các vị tướng Byzantine vây hãm một thành phố địch. Họ liên lạc với nhau chỉ bằng tin nhắn messenger. Các tướng phải đồng thuận về một kế hoạch duy nhất: cùng Tấn công hoặc cùng Rút lui. Nếu có một vài tướng phản bội (hoặc tin nhắn bị thất lạc), họ sẽ cố tình gửi các thông điệp mâu thuẫn (gửi "Tấn công" cho tướng này nhưng gửi "Rút lui" cho tướng khác) nhằm làm chia rẽ và thất bại quân đội.
 
 \textbf{Ý nghĩa trong Blockchain:} Đây là mô hình hóa thách thức đạt được sự đồng thuận dữ liệu trong một hệ thống phân tán, nơi các nút tham gia mạng có thể bị lỗi kỹ thuật (crash), mất kết nối, hoặc tệ hơn là chủ động gian lận, gửi dữ liệu sai lệch để trục lợi.
 
 \subsubsection{Các thuật toán đồng thuận truyền thống (PoW, PoS)}
 \begin{itemize}
-    \item \textbf{Proof of Work (PoW - Bằng chứng công việc):} Các nút (thợ đào) phải cạnh tranh giải một bài toán toán học cực khó bằng sức mạnh phần cứng máy tính (tìm giá trị Nonce thích hợp). Người đầu tiên giải được sẽ giành quyền đóng gói khối và nhận phần thưởng. PoW bảo mật rất cao nhưng tiêu tốn tài nguyên điện năng khổng lồ và tốc độ xử lý giao dịch rất chậm (Bitcoin chỉ khoảng 7 TPS).
+    \item \textbf{Proof of Work (PoW - Bằng chứng công việc):} Các nút phải cạnh tranh giải một bài toán toán học cực khó bằng sức mạnh phần cứng máy tính (tìm giá trị Nonce thích hợp). Người đầu tiên giải được sẽ giành quyền đóng gói khối và nhận phần thưởng \cite{antonopoulos}. PoW bảo mật rất cao nhưng tiêu tốn tài nguyên điện năng khổng lồ và tốc độ xử lý giao dịch rất chậm (Bitcoin chỉ khoảng 7 TPS).
     \item \textbf{Proof of Stake (PoS - Bằng chứng cổ phần):} Thay thế việc khai thác bằng phần cứng bằng việc đặt cọc (stake) tiền điện tử. Hệ thống dựa vào tỷ lệ cổ phần đặt cọc để chọn ngẫu nhiên nút có quyền tạo khối mới. PoS tiết kiệm năng lượng hơn PoW, tốc độ nhanh hơn, nhưng có nguy cơ dẫn đến việc tích lũy tài sản (người giàu càng giàu và nắm quyền kiểm soát mạng).
     \item \textbf{Proof of Authority (PoA - Bằng chứng ủy quyền):} Thay vì sử dụng năng lực tính toán hay lượng tiền đặt cọc, cơ chế này dựa trên danh tính và uy tín của các nút xác thực (Validators). Chỉ một nhóm các nút đã được kiểm duyệt, định danh và cấp phép từ trước mới có quyền đóng gói khối. PoA mang lại tốc độ xử lý giao dịch (TPS) cực kỳ cao, gần như không tiêu tốn tài nguyên phần cứng và rất phù hợp cho các mạng Private hoặc Consortium Blockchain, tuy nhiên phải đánh đổi bằng việc mang tính tập trung cao hơn so với PoW hay PoS.
 \end{itemize}
@@ -328,9 +328,9 @@ Hệ thống chuỗi doanh nghiệp yêu cầu tốc độ xử lý cao và các
     \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{|p{3.5cm}|p{5.5cm}|p{5.5cm}|}
         \hline
-        \textbf{Đặc tính so sánh} & \textbf{Nhóm lỗi hỏng hóc (CFT)} & \textbf{Nhóm lỗi Byzantine (BFT)} \\ \hline
+        \textbf{Đặc tính so sánh} & \textbf{Nhóm lỗi hỏng hóc} & \textbf{Nhóm lỗi Byzantine} \\ \hline
         \textbf{Bản chất chống lỗi} & Chỉ chịu được lỗi nút bị sập nguồn, mất mạng (đột ngột dừng hoạt động). & Chịu được cả lỗi nút bị sập VÀ nút cố tình gian lận, gửi dữ liệu sai. \\ \hline
-        \textbf{Thuật toán đại diện} & Raft, Paxos. & PBFT (Practical Byzantine Fault Tolerance), IBFT. \\ \hline
+        \textbf{Thuật toán đại diện} & Raft \cite{ongaro}, Paxos. & PBFT \cite{castro}, IBFT. \\ \hline
         \textbf{Cơ chế hoạt động} & Bầu ra một nút Leader (Trưởng nhóm). Mọi giao dịch gửi tới Leader, Leader ghi logs và đồng bộ xuống các nút Follower. Nếu Leader sập, các nút còn lại bầu nhanh Leader mới. & Trải qua 3 giai đoạn đồng thuận nghiêm ngặt công khai: Pre-prepare, Prepare, và Commit thông qua việc trao đổi thông điệp toàn vẹn giữa tất cả các nút. \\ \hline
         \textbf{Khả năng chịu lỗi} & Chịu lỗi tối đa lên tới $F = \frac{N-1}{2}$ (Mạng cần $2F + 1$ nút để hoạt động). & Chịu lỗi tối đa thấp hơn: $F = \frac{N-1}{3}$ (Mạng cần tối thiểu $3F + 1$ nút để hoạt động). \\ \hline
         \textbf{Ứng dụng doanh nghiệp} & Thích hợp cho môi trường nội bộ doanh nghiệp tin cậy cao, cần tốc độ cực nhanh. & Thích hợp cho môi trường Consortium (liên minh nhiều bên đối tác có sự nghi kị lẫn nhau). \\ \hline
@@ -348,19 +348,19 @@ Hợp đồng thông minh là một chương trình máy tính (mã nguồn mã 
 \subsubsection{Vòng đời thực thi của Hợp đồng thông minh}
 Vòng đời thực thi của một Hợp đồng thông minh trải qua 5 bước nghiêm ngặt:
 \begin{enumerate}
-    \item \textbf{Viết mã (Coding):} Lập trình viên viết mã nguồn hợp đồng bằng ngôn ngữ chuyên dụng (như Solidity trên Ethereum, hoặc Go/Java/Node.js cho Chaincode trên Hyperledger Fabric).
-    \item \textbf{Biên dịch (Compilations):} Mã nguồn được biên dịch thành mã máy (Bytecode) để máy ảo (như EVM) hoặc môi trường thực thi (Docker container) có thể đọc hiểu.
-    \item \textbf{Triển khai (Deployment):} Bytecode được đóng gói vào một giao dịch đặc biệt và gửi lên mạng lưới Blockchain. Sau khi được các nút đồng thuận và đóng khối thành công, hợp đồng sẽ có một Địa chỉ duy nhất (Contract Address) cố định trên chuỗi.
-    \item \textbf{Định tuyến gọi hàm (Contract Router):} Khi người dùng hoặc ứng dụng client muốn tương tác, họ gửi một giao dịch đến địa chỉ của hợp đồng kèm theo tên hàm và tham số đầu vào. Hệ thống mạng lưới sẽ định tuyến (route) yêu cầu này đến đúng môi trường cô lập chứa mã hợp đồng để kích hoạt thực thi.
-    \item \textbf{Cập nhật trạng thái (State Update):} Sau khi tính toán xong, kết quả thực thi tạo ra một trạng thái mới (World State thay đổi). Trạng thái mới này được phân phối đồng bộ, xác nhận qua cơ chế đồng thuận mạng và ghi vĩnh viễn vào sổ cái phân tán.
+    \item \textbf{Viết mã:} Lập trình viên viết mã nguồn hợp đồng bằng ngôn ngữ chuyên dụng (như Solidity trên Ethereum, hoặc Go/Java/Node.js cho Chaincode trên Hyperledger Fabric).
+    \item \textbf{Biên dịch:} Mã nguồn được biên dịch thành mã máy (Bytecode) để máy ảo (như EVM) hoặc môi trường thực thi (Docker container) có thể đọc hiểu.
+    \item \textbf{Triển khai:} Bytecode được đóng gói vào một giao dịch đặc biệt và gửi lên mạng lưới Blockchain. Sau khi được các nút đồng thuận và đóng khối thành công, hợp đồng sẽ có một Địa chỉ duy nhất (Contract Address) cố định trên chuỗi.
+    \item \textbf{Định tuyến gọi hàm:} Khi người dùng hoặc ứng dụng client muốn tương tác, họ gửi một giao dịch đến địa chỉ của hợp đồng kèm theo tên hàm và tham số đầu vào. Hệ thống mạng lưới sẽ định tuyến (route) yêu cầu này đến đúng môi trường cô lập chứa mã hợp đồng để kích hoạt thực thi.
+    \item \textbf{Cập nhật trạng thái:} Sau khi tính toán xong, kết quả thực thi tạo ra một trạng thái mới (World State thay đổi). Trạng thái mới này được phân phối đồng bộ, xác nhận qua cơ chế đồng thuận mạng và ghi vĩnh viễn vào sổ cái phân tán.
 \end{enumerate}
 
 \subsection{Phân tích kiến trúc nền tảng Hyperledger Fabric}
 
 \subsubsection{Mô hình Execute-Order-Validate}
-Các mạng Blockchain truyền thống như Bitcoin hay Ethereum sử dụng mô hình Order-Execute (Thứ tự trước - Thực thi sau). Nghĩa là các giao dịch được gom lại, sắp xếp thứ tự và đóng khối trước bởi các thợ đào (Order), sau đó tất cả các nút trong mạng đồng loạt tải khối về rồi mới tự chạy thực thi lại mã nguồn để cập nhật sổ cái (Execute). Mô hình này bộc lộ điểm nghẽn hiệu năng nghiêm ngặt (tất cả các nút đều phải chạy lại mọi thứ) và không đảm bảo tính bảo mật thương mại.
+Các mạng Blockchain truyền thống như Bitcoin hay Ethereum sử dụng mô hình Thứ tự trước - Thực thi sau. Nghĩa là các giao dịch được gom lại, sắp xếp thứ tự và đóng khối trước bởi các thợ đào (Order), sau đó tất cả các nút trong mạng đồng loạt tải khối về rồi mới tự chạy thực thi lại mã nguồn để cập nhật sổ cái (Execute). Mô hình này bộc lộ điểm nghẽn hiệu năng nghiêm ngặt (tất cả các nút đều phải chạy lại mọi thứ) và không đảm bảo tính bảo mật thương mại.
 \newpage
-Hyperledger Fabric kiến tạo một kiến trúc đột phá hoàn toàn: Execute-Order-Validate (Thực thi trước - Sắp xếp sau - Kiểm tra lại). Quy trình gồm 3 bước riêng biệt phân rã nhiệm vụ cho từng loại nút chuyên biệt:
+Hyperledger Fabric kiến tạo một kiến trúc đột phá hoàn toàn: Thực thi trước - Sắp xếp sau - Kiểm tra lại \cite{fabric}. Quy trình gồm 3 bước riêng biệt phân rã nhiệm vụ cho từng loại nút chuyên biệt:
 \begin{itemize}
     \item \textbf{Execute (Thực thi/Ký duyệt):} Ứng dụng gửi đề xuất giao dịch đến các nút ký duyệt chỉ định trước (Endorsing Nodes). Các nút này chạy thử nghiệm mã Smart Contract (gọi là Chaincode) một cách độc lập trong môi trường bảo mật (Docker) để tạo ra kết quả đọc/ghi (Read-Write Set) và ký số xác nhận mà không ghi ngay vào sổ cái.
     \item \textbf{Order (Sắp xếp thứ tự):} Ứng dụng thu thập đủ chữ ký phê duyệt từ bước 1 và gửi Read-Write Set đến dịch vụ sắp xếp (Ordering Service / Orderer Nodes). Các nút Orderer chịu trách nhiệm duy nhất là sắp xếp các giao dịch theo đúng trình tự thời gian và đóng gói chúng thành các khối (Blocks) mà không quan tâm bên trong giao dịch chạy logic gì. Điều này tối ưu hóa băng thông mạng cực lớn.
@@ -368,7 +368,7 @@ Hyperledger Fabric kiến tạo một kiến trúc đột phá hoàn toàn: Exec
 \end{itemize}
 
 \subsubsection{Vấn đề thực tiễn và bài toán tối ưu tài nguyên}
-Mặc dù kiến trúc Execute-Order-Validate mang lại hiệu năng cao và phân quyền mạnh mẽ cho doanh nghiệp lớn, tuy nhiên, việc vận hành và triển khai một mạng Hyperledger Fabric chuẩn hóa trong thực tế đối diện với sự phức tạp và cồng kềnh rất lớn về mặt kiến trúc tài nguyên phần cứng hệ thống:
+Mặc dù kiến trúc Execute-Order-Validate mang lại hiệu năng cao và phân quyền mạnh mẽ cho doanh nghiệp lớn, tuy nhiên, việc vận hành và triển khai một mạng Hyperledger Fabric chuẩn hóa trong thực tế đối diện với sự phức tạp và cồng kềnh rất lớn về mặt kiến trúc tài nguyên phần cứng hệ thống \cite{fabric}:
 \begin{itemize}
     \item \textbf{Hệ thống CA (Certificate Authority) đồ sộ:} Fabric quản lý định danh người dùng và các nút bằng chứng thư số X.509. Mỗi tổ chức (Organization) tham gia yêu cầu phải duy trì một hoặc nhiều cụm máy chủ CA độc lập, gây quá tải quản trị.
     \item \textbf{Cụm Orderer phức tạp:} Để đảm bảo tính sẵn sàng cao, dịch vụ Orderer phải chạy thuật toán Raft gồm nhiều nút cấu hình phức tạp, đòi hỏi cấu hình mạng ổn định và độ trễ cực thấp.
@@ -676,7 +676,7 @@ Do đặc thù hướng tới chuỗi doanh nghiệp nội bộ với các đị
 \section{Hướng dẫn sử dụng và Triển khai}
 
 \subsection{Khởi tạo môi trường và cấu hình}
-Để hệ thống Khoai Chain vận hành trơn tru, người dùng cần chuẩn bị một môi trường tối giản bao gồm Docker Engine và Go runtime. Toàn bộ thiết lập mạng lưới được tập trung vào một tệp cấu hình duy nhất nhằm giảm tải công việc của quản trị viên (DevOps).
+Để hệ thống Khoai Chain vận hành trơn tru, người dùng cần chuẩn bị một môi trường tối giản bao gồm Docker Engine và Go runtime \cite{donovan}. Toàn bộ thiết lập mạng lưới được tập trung vào một tệp cấu hình duy nhất nhằm giảm tải công việc của quản trị viên (DevOps).
 
 \begin{itemize}
     \item \textbf{Cấu hình mạng lưới qua \texttt{khoai-config.yaml}:} Tệp cấu hình này định nghĩa toàn bộ topology của mạng, bao gồm thông tin định danh của các nút (Node ID), địa chỉ IP, cổng giao tiếp P2P, và các tham số cốt lõi của chuỗi (như thời gian đóng khối tối đa, kích thước khối). Việc sử dụng định dạng YAML giúp các cấu hình trở nên trực quan và dễ dàng chỉnh sửa cho người dùng mới.
@@ -715,11 +715,11 @@ Dù đã đáp ứng được mô hình blockchain riêng biệt tinh gọn, Kho
 
 \subsection*{Tóm tắt các chức năng đã chốt}
 \addcontentsline{toc}{subsection}{Tóm tắt các chức năng đã chốt}
-Đồ án đã hoàn thành mục tiêu nghiên cứu và xây dựng thành công Khoai Chain – một nền tảng blockchain riêng biệt (private blockchain) tinh gọn, giải quyết triệt để sự cồng kềnh của các hệ thống công nghiệp như Hyperledger Fabric. Tính đến giai đoạn hiện tại, hệ thống đã hoàn thiện và chốt hạ các chức năng cốt lõi sau:
+Đồ án đã hoàn thành mục tiêu nghiên cứu và xây dựng thành công Khoai Chain – một nền tảng private blockchain tinh gọn, giải quyết triệt để sự cồng kềnh của các hệ thống công nghiệp như Hyperledger Fabric. Tính đến giai đoạn hiện tại, hệ thống đã hoàn thiện và chốt hạ các chức năng cốt lõi sau:
 
 \begin{itemize}
-    \item \textbf{Lõi Blockchain (Core) \& Cơ sở dữ liệu nhúng:} Tự xây dựng toàn bộ cấu trúc dữ liệu Khối (Block) và Giao dịch (Transaction) từ con số không bằng ngôn ngữ Go. Tích hợp thành công cơ sở dữ liệu Key-Value nhúng để lưu trữ trạng thái sổ cái, đảm bảo tốc độ truy xuất I/O tối ưu mà không cần phụ thuộc vào hệ quản trị cơ sở dữ liệu bên ngoài.
-    \item \textbf{Mạng ngang hàng (P2P) đồng bộ:} Triển khai thành công giao thức truyền tải bản tin (Message Protocol) và xử lý đồng bộ chuỗi. Đã giải quyết triệt để rủi ro phân nhánh đa đầu (Multi-head fork) bằng cơ chế kiểm duyệt phả hệ tuyến tính nghiêm ngặt và đồng nhất hóa khối khởi thủy.
+    \item \textbf{Lõi Blockchain \& Cơ sở dữ liệu nhúng:} Tự xây dựng toàn bộ cấu trúc dữ liệu Khối (Block) và Giao dịch (Transaction) từ con số không bằng ngôn ngữ Go \cite{donovan}. Tích hợp thành công cơ sở dữ liệu Key-Value nhúng để lưu trữ trạng thái sổ cái, đảm bảo tốc độ truy xuất I/O tối ưu mà không cần phụ thuộc vào hệ quản trị cơ sở dữ liệu bên ngoài.
+    \item \textbf{Mạng ngang hàng đồng bộ:} Triển khai thành công giao thức truyền tải bản tin (Message Protocol) và xử lý đồng bộ chuỗi. Đã giải quyết triệt để rủi ro phân nhánh đa đầu (Multi-head fork) bằng cơ chế kiểm duyệt phả hệ tuyến tính nghiêm ngặt và đồng nhất hóa khối khởi thủy.
     \item \textbf{Quản lý Mempool \& Hợp đồng thông minh:} Hoàn thiện luồng thực thi giao dịch an toàn với cơ chế tách biệt vùng nhớ đệm (\texttt{stagingState}). Hệ thống chỉ chốt (Commit) trạng thái sổ cái khi toàn bộ lô khối hợp lệ, loại bỏ rủi ro dữ liệu rác.
     \item \textbf{Triển khai Container hóa \& CLI SDK:} Đóng gói thành công tiến trình Node vào môi trường Docker và xây dựng bộ công cụ giao diện dòng lệnh (KhoaiChain SDK), cho phép khởi chạy, quản trị và tương tác với mạng lưới chỉ qua các thao tác lệnh đơn giản.
 \end{itemize}
@@ -729,34 +729,45 @@ Dù đã đáp ứng được mô hình blockchain riêng biệt tinh gọn, Kho
 Dựa trên nền tảng kiến trúc đã thiết lập, để Khoai Chain thực sự sẵn sàng cho môi trường triển khai thực tế (Production) của doanh nghiệp, mã nguồn cần tiếp tục được nghiên cứu và nâng cấp ở các khía cạnh sau:
 
 \begin{itemize}
-    \item \textbf{Hoàn thiện cơ chế Reorg (Tái cấu trúc chuỗi):} Bổ sung thuật toán Rollback tự động. Trong trường hợp mạng lưới gặp sự cố chia cắt sinh ra các nhánh tạm thời, hệ thống phải có khả năng tự động so sánh, loại bỏ các khối thuộc nhánh ngắn hơn và đồng bộ lại theo nhánh chính thức khi mạng kết nối lại.
-    \item \textbf{Bảo vệ môi trường thực thi Hợp đồng (Sandboxing):} Cài đặt cơ chế giới hạn tài nguyên (như áp dụng \texttt{context.WithTimeout} trong Go) để tự động ngắt các hợp đồng thông minh bị lỗi vòng lặp vô hạn, ngăn chặn tình trạng cạn kiệt tài nguyên CPU (Denial of Service) của Node tiếp nhận.
-    \item \textbf{Tối ưu hóa khả năng lưu trữ (State Pruning):} Khi hệ thống vận hành lâu dài, kích thước sổ cái sẽ phình to. Cần nghiên cứu phát triển cơ chế nén hoặc dọn dẹp dữ liệu lịch sử  nhưng vẫn giữ lại các bằng chứng mật mã để đảm bảo các Node cấu hình thấp vẫn có thể tham gia lưu trữ mà không bị tràn bộ nhớ đệm.
-    \item \textbf{Cơ chế bảo mật dữ liệu riêng tư (Private Data):} Nâng cấp kiến trúc luồng dữ liệu để hỗ trợ các giao dịch ẩn danh giữa một nhóm Node cụ thể trong mạng. Điều này giúp các doanh nghiệp trong cùng chuỗi có thể giao dịch nội bộ mà không làm lộ chi tiết hợp đồng ra toàn bộ phần còn lại của mạng lưới.
+    \item \textbf{Hoàn thiện cơ chế Reorg:} Bổ sung thuật toán Rollback tự động. Trong trường hợp mạng lưới gặp sự cố chia cắt sinh ra các nhánh tạm thời, hệ thống phải có khả năng tự động so sánh, loại bỏ các khối thuộc nhánh ngắn hơn và đồng bộ lại theo nhánh chính thức khi mạng kết nối lại.
+    \item \textbf{Bảo vệ môi trường thực thi Hợp đồng:} Cài đặt cơ chế giới hạn tài nguyên (như áp dụng \texttt{context.WithTimeout} trong Go) để tự động ngắt các hợp đồng thông minh bị lỗi vòng lặp vô hạn, ngăn chặn tình trạng cạn kiệt tài nguyên CPU (Denial of Service) của Node tiếp nhận.
+    \item \textbf{Tối ưu hóa khả năng lưu trữ:} Khi hệ thống vận hành lâu dài, kích thước sổ cái sẽ phình to. Cần nghiên cứu phát triển cơ chế nén hoặc dọn dẹp dữ liệu lịch sử  nhưng vẫn giữ lại các bằng chứng mật mã để đảm bảo các Node cấu hình thấp vẫn có thể tham gia lưu trữ mà không bị tràn bộ nhớ đệm.
+    \item \textbf{Cơ chế bảo mật dữ liệu riêng tư:} Nâng cấp kiến trúc luồng dữ liệu để hỗ trợ các giao dịch ẩn danh giữa một nhóm Node cụ thể trong mạng. Điều này giúp các doanh nghiệp trong cùng chuỗi có thể giao dịch nội bộ mà không làm lộ chi tiết hợp đồng ra toàn bộ phần còn lại của mạng lưới.
+    \item \textbf{Phát triển giao diện API kiểm thử nhanh:} Tích hợp một module máy chủ web hạng nhẹ mở cổng giao tiếp HTTP/RESTful (tương tự kiến trúc của FastAPI) trực tiếp vào Node. Phân hệ này sẽ cung cấp một giao diện trực quan giúp các nhà phát triển dễ dàng gửi giao dịch, gọi thử các hàm Smart Contract và xem log trạng thái thay đổi theo thời gian thực mà không cần phụ thuộc hoàn toàn vào giao diện dòng lệnh.
 \end{itemize}
 
 \newpage
 
+
+\addcontentsline{toc}{section}{Tài liệu tham khảo}
 \renewcommand{\refname}{Tài liệu tham khảo}
 \begin{thebibliography}{99}
 
 % Tai lieu cho phan ly thuyet Blockchain va P2P
 \bibitem{antonopoulos}
-A. M. Antonopoulos, \textit{Mastering Bitcoin: Programming the Open Blockchain}, 2nd ed. Sebastopol, CA: O'Reilly Media, 2017, pp. 15-40.
+A. M. Antonopoulos, \textit{Mastering Bitcoin: Programming the Open Blockchain}, 2nd ed. Sebastopol, CA: O'Reilly Media, 2017.
 
-% Tai lieu cho phan so sanh Hyperledger Fabric
 \bibitem{fabric}
 E. Androulaki et al., "Hyperledger fabric: a distributed operating system for permissioned blockchains," in \textit{Proceedings of the Thirteenth EuroSys Conference}, Porto, Portugal, 2018, pp. 1-15.
 
-% Tai lieu cho phan thuat toan dong thuan CFT/BFT
+\bibitem{lamport}
+L. Lamport, R. Shostak, and M. Pease, "The Byzantine Generals Problem," \textit{ACM Transactions on Programming Languages and Systems}, vol. 4, no. 3, pp. 382-401, 1982.
+
 \bibitem{castro}
 M. Castro and B. Liskov, "Practical Byzantine Fault Tolerance," in \textit{Proceedings of the Third Symposium on Operating Systems Design and Implementation}, New Orleans, LA, 1999, pp. 173-186.
 
-% Tai lieu cho phan mat ma hoc (Elliptic Curve/Ed25519)
-\bibitem{bernstein}
-D. J. Bernstein, N. Duif, T. Lange, P. Schwabe, and B. Yang, "High-speed high-security signatures," \textit{Journal of Cryptographic Engineering}, vol. 2, no. 2, pp. 77-89, 2012.
+\bibitem{ongaro}
+D. Ongaro and J. Ousterhout, "In search of an understandable consensus algorithm," in \textit{2014 USENIX Annual Technical Conference}, Philadelphia, PA, 2014, pp. 305-319.
 
-% Tai lieu cho viec xay dung Core bang Go va Docker
+\bibitem{demers}
+A. Demers et al., "Epidemic algorithms for replicated database maintenance," in \textit{Proceedings of the sixth annual ACM Symposium on Principles of distributed computing}, Vancouver, BC, Canada, 1987, pp. 1-12.
+
+\bibitem{stallings}
+W. Stallings, \textit{Cryptography and Network Security: Principles and Practice}, 7th ed. London, UK: Pearson, 2017.
+
+\bibitem{bernstein}
+D. J. Bernstein et al., "High-speed high-security signatures," \textit{Journal of Cryptographic Engineering}, vol. 2, no. 2, pp. 77-89, 2012.
+
 \bibitem{donovan}
 A. A. A. Donovan and B. W. Kernighan, \textit{The Go Programming Language}. Boston, MA: Addison-Wesley Professional, 2015.
 
