@@ -144,7 +144,7 @@ Nếu phát hiện có bất kỳ sự gian lận hay sao chép nào, em xin ch�
 
 Đặc biệt, em xin bày tỏ lòng biết ơn sâu sắc đến Thầy Nguyễn Việt Nhật. Những bài giảng của thầy trong học phần An toàn bảo mật thông tin, cụ thể là việc đi sâu vào thuật toán mã hóa RSA, đã mở ra cho em những hiểu biết cốt lõi đầu tiên về hệ thống mật mã bất đối xứng (khóa công khai và khóa bí mật). Nền tảng tư duy vững chắc về bảo mật đó chính là kim chỉ nam giúp em có khả năng tự nghiên cứu, áp dụng chữ ký số đường cong Elliptic (Ed25519) \cite{bernstein} và trực tiếp lập trình cơ chế xác thực giao dịch an toàn cho lõi hệ thống Khoai Chain ngày hôm nay.
 
-Bên cạnh đó, em cũng xin gửi lời cảm ơn chân thành đến gia đình, những người bạn và các anh chị đồng nghiệp đã luôn động viên, hỗ trợ và đóng góp các ý kiến quý báu trong suốt quá trình em phát triển mã nguồn cũng như hoàn thiện cuốn báo cáo này.
+Bên cạnh đó, em cũng xin gửi lời cảm ơn chân thành đến những người bạn và các anh chị đồng nghiệp đã luôn động viên, hỗ trợ và đóng góp các ý kiến quý báu trong suốt quá trình em phát triển mã nguồn cũng như hoàn thiện cuốn báo cáo này.
 
 \vspace{1cm}
 \begin{flushright}
@@ -159,9 +159,13 @@ Bên cạnh đó, em cũng xin gửi lời cảm ơn chân thành đến gia đ�
 \section*{Lời nói đầu}
 \addcontentsline{toc}{section}{Lời nói đầu}
 
-Công nghệ sổ cái phân tán (Blockchain) đang chứng minh được tiềm năng to lớn trong việc giải quyết các bài toán minh bạch hóa và bảo mật dữ liệu. Tuy nhiên, việc ứng dụng các nền tảng công nghiệp đồ sộ vào môi trường doanh nghiệp vừa và nhỏ (SME) vẫn còn nhiều rào cản về hạ tầng và tài nguyên. Đó chính là động lực để em thực hiện đồ án "Phát triển hệ thống blockchain riêng biệt cho một chuỗi doanh nghiệp (Khoai Chain)", với mục tiêu xây dựng một kiến trúc lõi tinh gọn nhưng vẫn đảm bảo tính toàn vẹn và bất biến của dữ liệu.
+Trong bối cảnh nền kinh tế số đang phát triển mạnh mẽ, niềm tin và tính toàn vẹn của dữ liệu đã trở thành những tài sản vô hình mang tính sống còn đối với bất kỳ tổ chức nào. Công nghệ sổ cái phân tán (Blockchain) ra đời như một lời giải hoàn hảo cho bài toán đó, loại bỏ điểm lỗi duy nhất và minh bạch hóa mọi luồng thông tin. Tuy nhiên, sự phát triển của công nghệ này lại đang tạo ra một nghịch lý: các nền tảng Public thì chậm chạp và tốn kém, trong khi các giải pháp chuẩn công nghiệp (như Hyperledger Fabric) lại quá cồng kềnh, phức tạp và vượt quá khả năng chịu đựng về hạ tầng của phần lớn các doanh nghiệp vừa và nhỏ (SME) tại Việt Nam. 
 
-Mặc dù đã nỗ lực hết mình, nhưng do giới hạn về mặt thời gian và kinh nghiệm thực tiễn, đồ án chắc chắn không tránh khỏi những thiếu sót. Em rất mong nhận được sự đánh giá và những lời góp ý quý báu từ Hội đồng bảo vệ để hệ thống được hoàn thiện hơn trong tương lai.
+Chính khoảng trống công nghệ đó đã thôi thúc em đặt ra một câu hỏi lớn: \textit{"Tại sao chúng ta không thể có một lõi blockchain đủ mạnh mẽ để bảo mật, nhưng lại đủ tinh gọn để khởi chạy trên một máy tính cá nhân?"} Đó là khởi nguồn cho đồ án \textbf{"Phát triển hệ thống blockchain riêng biệt cho một chuỗi doanh nghiệp (Khoai Chain)"}.
+
+Đồ án này không đơn thuần là việc lắp ráp các công cụ có sẵn, mà là một hành trình đi sâu vào tầng cốt lõi của hệ thống phân tán. Việc tự tay thiết kế cấu trúc khối, viết logic cho mạng ngang hàng, và áp dụng các thuật toán mật mã để tự động hóa quá trình đồng thuận mang lại những thách thức rất lớn, nhưng cũng là những trải nghiệm học thuật giá trị nhất. Từ triết lý "tối giản hóa", Khoai Chain được thiết kế nhằm mang lại một môi trường thử nghiệm độc lập, dễ dàng đóng gói và triển khai, giúp thu hẹp khoảng cách giữa lý thuyết mật mã học phức tạp và khả năng ứng dụng thực chiến trong doanh nghiệp.
+
+Dù hệ thống đã hình thành được bộ khung kiến trúc và đáp ứng được các luồng giao dịch cơ bản, nhưng với giới hạn về mặt thời gian cũng như kinh nghiệm vận hành thực tiễn, mã nguồn của Khoai Chain chắc chắn vẫn còn những góc khuất chưa được tối ưu triệt để (như giới hạn tài nguyên tính toán hay cơ chế tự động tái cấu trúc chuỗi). Em rất mong nhận được những nhận xét, đánh giá khắt khe và các lời góp ý quý báu từ Hội đồng bảo vệ để có thể tiếp tục hoàn thiện, nâng cấp hệ thống vững chắc hơn trong tương lai.
 
 \newpage
 
