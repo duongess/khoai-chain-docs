@@ -171,17 +171,50 @@
 \end{xltabular}
 
 \newpage
-% Các phần không đánh số (Dùng dấu sao * và thêm thủ công vào mục lục)
-\section*{Lời nói đầu}
-\addcontentsline{toc}{section}{Lời nói đầu}
+% ==================== LỜI CAM ĐOAN ====================
+\section*{Lời cam đoan}
+\addcontentsline{toc}{section}{Lời cam đoan}
 
-Công nghệ sổ cái phân tán (Blockchain) đang chứng minh được tiềm năng to lớn trong việc giải quyết các bài toán minh bạch hóa và bảo mật dữ liệu. Tuy nhiên, việc ứng dụng các nền tảng công nghiệp đồ sộ vào môi trường doanh nghiệp vừa và nhỏ (SME) vẫn còn nhiều rào cản về hạ tầng và tài nguyên. Đó chính là động lực để em thực hiện đồ án "Phát triển hệ thống blockchain riêng biệt cho một chuỗi doanh nghiệp (Khoai Chain)", với mục tiêu xây dựng một kiến trúc lõi tinh gọn nhưng vẫn đảm bảo tính toàn vẹn và bất biến của dữ liệu.
+Em xin cam đoan nội dung đồ án tốt nghiệp "Phát triển hệ thống blockchain riêng biệt cho một chuỗi doanh nghiệp (Khoai Chain)" là do em tự nghiên cứu, tìm hiểu và thực hiện dưới sự hướng dẫn của Thầy Nguyễn Việt Nhật. 
+
+Toàn bộ nội dung của đồ án không sao chép hay vay mượn trái phép từ các công trình khoa học khác. Các đoạn trích dẫn, số liệu và tài liệu tham khảo sử dụng trong báo cáo đều được trích dẫn nguồn gốc và ghi chú đầy đủ, rõ ràng trong danh mục tài liệu tham khảo.
+
+Nếu phát hiện có bất kỳ sự gian lận hay sao chép nào, em xin chịu hoàn toàn trách nhiệm trước Hội đồng bảo vệ và nhà trường.
+
+\vspace{1cm}
+\begin{flushright}
+    \begin{tabular}{c}
+        \textit{Hà Nội, ngày ... tháng ... năm 2026} \\[0.5cm]
+        \textbf{Sinh viên thực hiện} \\[2cm] % Bạn có thể chỉnh lại khoảng cách ký tại đây
+        Cấn Tất Dương
+    \end{tabular}
+\end{flushright}
+
+\newpage
+% ==================== LỜI CẢM ƠN ====================
+\section*{Lời cảm ơn}
+\addcontentsline{toc}{section}{Lời cảm ơn}
 
 Để hoàn thành được đồ án này, em xin gửi lời cảm ơn chân thành đến các thầy cô trong Khoa Công nghệ Thông tin - Trường Đại học Xây dựng Hà Nội đã tận tình giảng dạy và trang bị cho em những kiến thức nền tảng quý báu trong suốt bốn năm học vừa qua.
 
 Đặc biệt, em xin bày tỏ lòng biết ơn sâu sắc đến Thầy Nguyễn Việt Nhật. Những bài giảng của thầy trong học phần An toàn bảo mật thông tin, cụ thể là việc đi sâu vào thuật toán mã hóa RSA, đã mở ra cho em những hiểu biết cốt lõi đầu tiên về hệ thống mật mã bất đối xứng (khóa công khai và khóa bí mật). Nền tảng tư duy vững chắc về bảo mật đó chính là kim chỉ nam giúp em có khả năng tự nghiên cứu, áp dụng chữ ký số đường cong Elliptic (Ed25519) \cite{bernstein} và trực tiếp lập trình cơ chế xác thực giao dịch an toàn cho lõi hệ thống Khoai Chain ngày hôm nay.
 
-Bên cạnh đó, em cũng xin gửi lời cảm ơn đến gia đình và những người bạn đã luôn đồng hành, hỗ trợ và đóng góp ý kiến trong suốt quá trình phát triển mã nguồn cũng như hoàn thiện báo cáo. 
+Bên cạnh đó, em cũng xin gửi lời cảm ơn chân thành đến gia đình, những người bạn và các anh chị đồng nghiệp đã luôn động viên, hỗ trợ và đóng góp các ý kiến quý báu trong suốt quá trình em phát triển mã nguồn cũng như hoàn thiện cuốn báo cáo này.
+
+\vspace{1cm}
+\begin{flushright}
+    \begin{tabular}{c}
+        \textbf{Sinh viên thực hiện} \\[2cm]
+        Cấn Tất Dương
+    \end{tabular}
+\end{flushright}
+
+\newpage
+% ==================== LỜI NÓI ĐẦU ====================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+
+Công nghệ sổ cái phân tán (Blockchain) đang chứng minh được tiềm năng to lớn trong việc giải quyết các bài toán minh bạch hóa và bảo mật dữ liệu. Tuy nhiên, việc ứng dụng các nền tảng công nghiệp đồ sộ vào môi trường doanh nghiệp vừa và nhỏ (SME) vẫn còn nhiều rào cản về hạ tầng và tài nguyên. Đó chính là động lực để em thực hiện đồ án "Phát triển hệ thống blockchain riêng biệt cho một chuỗi doanh nghiệp (Khoai Chain)", với mục tiêu xây dựng một kiến trúc lõi tinh gọn nhưng vẫn đảm bảo tính toàn vẹn và bất biến của dữ liệu.
 
 Mặc dù đã nỗ lực hết mình, nhưng do giới hạn về mặt thời gian và kinh nghiệm thực tiễn, đồ án chắc chắn không tránh khỏi những thiếu sót. Em rất mong nhận được sự đánh giá và những lời góp ý quý báu từ Hội đồng bảo vệ để hệ thống được hoàn thiện hơn trong tương lai.
 
