@@ -288,7 +288,7 @@ Từ thực tiễn triển khai các bài toán nghiệp vụ phức tạp, đi�
 
 \subsubsection{Nhu cầu về một hệ thống blockchain thử nghiệm}
 % Tập trung vào môi trường giáo dục và phát triển, tách biệt SDK và Core
-Từ góc độ nghiên cứu và giáo dục, việc tiếp cận kiến trúc blockchain doanh nghiệp hiện nay gặp rất nhiều trở ngại do yêu cầu khắt khe về phần cứng. Người học và nhà phát triển thiếu đi một môi trường thử nghiệm tinh gọn, nơi họ có thể nhanh chóng khởi tạo một mạng lưới blockchain độc lập ngay trên máy tính cá nhân. Nhu cầu thực tế đòi hỏi một hệ thống được đóng gói nhẹ nhàng, đi kèm với các bộ công cụ phát triển (SDK) được tách biệt rõ ràng. Điều này giúp sinh viên và lập trình viên tập trung hoàn toàn vào việc xây dựng logic nghiệp vụ thông qua Hợp đồng thông minh (Smart Contract), thay vì tốn thời gian xử lý các cấu hình mạng ngang hàng (P2P) hay cơ chế đồng thuận ở tầng lõi.
+Từ góc độ nghiên cứu và giáo dục, việc tiếp cận kiến trúc blockchain doanh nghiệp hiện nay gặp rất nhiều trở ngại do yêu cầu khắt khe về phần cứng. Người học và nhà phát triển thiếu đi một môi trường thử nghiệm tinh gọn, nơi họ có thể nhanh chóng khởi tạo một mạng lưới blockchain độc lập ngay trên máy tính cá nhân. Nhu cầu thực tế đòi hỏi một hệ thống được đóng gói nhẹ nhàng, đi kèm với các bộ công cụ phát triển (SDK) được tách biệt rõ ràng. Điều này giúp sinh viên và lập trình viên tập trung hoàn toàn vào việc xây dựng logic nghiệp vụ thông qua Hợp đồng thông minh, thay vì tốn thời gian xử lý các cấu hình mạng ngang hàng hay cơ chế đồng thuận ở tầng lõi.
 
 \subsubsection{Nhu cầu thực tiễn của doanh nghiệp vừa và nhỏ}
 % Giải quyết bài toán cân bằng giữa tính minh bạch và chi phí vận hành cho SME
@@ -298,16 +298,16 @@ Các doanh nghiệp vừa và nhỏ hoặc các chuỗi cung ứng quy mô nội
 Đề tài hướng tới việc giải quyết những rào cản kỹ thuật của các nền tảng sổ cái phân tán truyền thống bằng cách xây dựng một hệ thống tinh gọn. Mục tiêu tổng thể được chia thành hai khía cạnh chính nhằm phục vụ cả môi trường nghiên cứu học thuật lẫn ứng dụng thực tiễn.
 
 \subsubsection{Tối ưu hóa quá trình triển khai và khởi chạy node}
-Hệ thống được thiết kế để giảm thiểu tối đa các bước thiết lập môi trường phức tạp. Bằng cách phát triển các công cụ giao diện dòng lệnh (CLI framework) và đóng gói toàn bộ quy trình khởi chạy dưới dạng các container, mục tiêu là cho phép người dùng có thể kích hoạt một node mạng lưới độc lập chỉ bằng vài thao tác cơ bản. Quá trình triển khai tự động này loại bỏ sự phụ thuộc vào các dịch vụ hạ tầng trung gian, giúp việc kết nối vào mạng ngang hàng (P2P), thử nghiệm cục bộ và gỡ lỗi diễn ra nhanh chóng. Điều này đặc biệt hữu ích trong việc tiết kiệm tài nguyên tính toán, cho phép chạy mượt mà ngay trên các thiết bị máy tính cá nhân tiêu chuẩn.
+Hệ thống được thiết kế để giảm thiểu tối đa các bước thiết lập môi trường phức tạp. Bằng cách phát triển các công cụ giao diện dòng lệnh và đóng gói toàn bộ quy trình khởi chạy dưới dạng các container, mục tiêu là cho phép người dùng có thể kích hoạt một node mạng lưới độc lập chỉ bằng vài thao tác cơ bản. Quá trình triển khai tự động này loại bỏ sự phụ thuộc vào các dịch vụ hạ tầng trung gian, giúp việc kết nối vào mạng ngang hàng, thử nghiệm cục bộ và gỡ lỗi diễn ra nhanh chóng. Điều này đặc biệt hữu ích trong việc tiết kiệm tài nguyên tính toán, cho phép chạy mượt mà ngay trên các thiết bị máy tính cá nhân tiêu chuẩn.
 
 \subsubsection{Xây dựng lõi blockchain chuyên biệt hóa cho chuỗi doanh nghiệp}
-Mục tiêu trọng tâm là phát triển một lõi (core blockchain) được tinh chỉnh trực tiếp cho các luồng nghiệp vụ nội bộ. Kiến trúc lõi sẽ tự chủ hoàn toàn các thành phần như quản lý mempool, đồng bộ block, giao thức P2P và định tuyến giao dịch (contract router). Bằng cách cung cấp một môi trường thực thi được cô lập và tách biệt qua bộ SDK, các nhà phát triển có thể trực tiếp ánh xạ các quy tắc kinh doanh thành Hợp đồng thông minh mà không làm ảnh hưởng đến tính ổn định của toàn mạng. Khác với kiến trúc phục vụ đám đông, hệ thống lõi này chuyên biệt hóa cho một nhóm các định chế hoặc đối tác kinh doanh đã được xác thực, đảm bảo giao dịch được lưu vết minh bạch, nhất quán nhưng vẫn nằm trong phạm vi giới hạn an toàn của chuỗi.
+Mục tiêu trọng tâm là phát triển một lõi được tinh chỉnh trực tiếp cho các luồng nghiệp vụ nội bộ. Kiến trúc lõi sẽ tự chủ hoàn toàn các thành phần như quản lý mempool, đồng bộ block, giao thức P2P và định tuyến giao dịch. Bằng cách cung cấp một môi trường thực thi được cô lập và tách biệt qua bộ SDK, các nhà phát triển có thể trực tiếp ánh xạ các quy tắc kinh doanh thành Hợp đồng thông minh mà không làm ảnh hưởng đến tính ổn định của toàn mạng. Khác với kiến trúc phục vụ đám đông, hệ thống lõi này chuyên biệt hóa cho một nhóm các định chế hoặc đối tác kinh doanh đã được xác thực, đảm bảo giao dịch được lưu vết minh bạch, nhất quán nhưng vẫn nằm trong phạm vi giới hạn an toàn của chuỗi.
 \newpage
 \subsection{Đối tượng và phạm vi nghiên cứu}
 % Xác định rõ đối tượng kỹ thuật và ranh giới giới hạn của đề tài
-\textbf{Đối tượng nghiên cứu của đề tài là công nghệ sổ cái phân tán (Distributed Ledger Technology), mạng ngang hàng (P2P) và cơ chế thực thi hợp đồng thông minh.}
+\textbf{Đối tượng nghiên cứu của đề tài là công nghệ sổ cái phân tán, mạng ngang hàng và cơ chế thực thi hợp đồng thông minh.}
 
-Phạm vi nghiên cứu tập trung vào việc thiết kế và xây dựng lõi hệ thống từ đầu, giới hạn trong môi trường mạng nội bộ (private/consortium) phục vụ chuỗi doanh nghiệp vừa và nhỏ hoặc mục đích giáo dục. Đề tài không tập trung giải quyết các bài toán của public blockchain như phát hành tiền mã hóa (tokenomics), khai thác (mining), hay khả năng mở rộng hàng triệu người dùng.
+Phạm vi nghiên cứu tập trung vào việc thiết kế và xây dựng lõi hệ thống từ đầu, giới hạn trong môi trường mạng nội bộ phục vụ chuỗi doanh nghiệp vừa và nhỏ hoặc mục đích giáo dục. Đề tài không tập trung giải quyết các bài toán của public blockchain như phát hành tiền mã hóa, khai thác, hay khả năng mở rộng hàng triệu người dùng.
 
 \newpage
 
@@ -316,11 +316,11 @@ Phạm vi nghiên cứu tập trung vào việc thiết kế và xây dựng lõ
 \subsection{Tổng quan về công nghệ Blockchain}
 
 \subsubsection{Khái niệm và nguyên lý hoạt động cơ bản}
-Blockchain là một công nghệ sổ cái phân tán (Distributed Ledger Technology - DLT) cho phép ghi lại các giao dịch một cách an toàn, minh bạch và không thể đảo ngược trên một mạng lưới máy tính ngang hàng (P2P). Thay vì lưu trữ dữ liệu tại một máy chủ trung tâm, dữ liệu của blockchain được nhân bản và đồng bộ hóa tại tất cả các nút tham gia mạng lưới \cite{antonopoulos}.
+Blockchain là một công nghệ sổ cái phân tán cho phép ghi lại các giao dịch một cách an toàn, minh bạch và không thể đảo ngược trên một mạng lưới máy tính ngang hàng. Thay vì lưu trữ dữ liệu tại một máy chủ trung tâm, dữ liệu của blockchain được nhân bản và đồng bộ hóa tại tất cả các nút tham gia mạng lưới \cite{antonopoulos}.
 
-Cấu trúc lưu trữ dữ liệu của Blockchain bao gồm chuỗi các khối (Blocks) liên kết tuyến tính với nhau theo thời gian. Mỗi khối chứa hai thành phần chính:
+Cấu trúc lưu trữ dữ liệu của Blockchain bao gồm chuỗi các khối liên kết tuyến tính với nhau theo thời gian. Mỗi khối chứa hai thành phần chính:
 \begin{itemize}
-    \item \textbf{Phần đầu khối:} Chứa siêu dữ liệu (metadata) quản lý khối, bao gồm:
+    \item \textbf{Phần đầu khối:} Chứa siêu dữ liệu quản lý khối, bao gồm:
     \begin{itemize}
         \item \textbf{Phiên bản:} Phiên bản của giao thức blockchain.
         \item \textbf{Mã băm khối trước:} Mã băm của toàn bộ header khối trước đó. Đây là sợi xích toán học liên kết các khối. Nếu dữ liệu khối trước bị sửa đổi, mã băm này thay đổi và làm gãy toàn bộ chuỗi phía sau.
@@ -383,7 +383,7 @@ Trong blockchain, thuật toán ECDSA - thuật toán chữ ký số dựa trên
 \subsubsection{Giao thức truyền bá thông điệp}
 Giao thức truyền bá thông điệp là cơ chế giao tiếp chính giúp các nút trong mạng lưới ngang hàng phi tập trung có thể phát tán thông tin (như giao dịch mới hoặc khối mới tạo) ra toàn mạng một cách nhanh chóng và tiết kiệm băng thông.
 \begin{itemize}
-    \item \textbf{Nguyên lý hoạt động:} Khi một nút nhận được một thông điệp mới, nó sẽ chọn ngẫu nhiên một số lượng nút K hàng xóm (Fanout) để chuyển tiếp thông điệp đó. Các nút nhận tiếp theo lại lặp lại quy trình chọn ngẫu nhiên này.
+    \item \textbf{Nguyên lý hoạt động:} Khi một nút nhận được một thông điệp mới, nó sẽ chọn ngẫu nhiên một số lượng nút K hàng xóm để chuyển tiếp thông điệp đó. Các nút nhận tiếp theo lại lặp lại quy trình chọn ngẫu nhiên này.
     \item \textbf{Hiệu quả:} Thông tin được lan truyền theo cấp số nhân. Chỉ trong một thời gian cực ngắn với độ phức tạp thời gian là $O(\log N)$ \cite{demers} (với $N$ là tổng số nút), toàn bộ mạng lưới rộng lớn sẽ đạt được trạng thái đồng bộ thông tin mà không cần một máy chủ điều phối trung tâm điều hướng luồng tin.
 \end{itemize}
 
@@ -433,8 +433,8 @@ Hợp đồng thông minh là một chương trình máy tính (mã nguồn mã 
 Vòng đời thực thi của một Hợp đồng thông minh trải qua 5 bước nghiêm ngặt:
 \begin{enumerate}
     \item \textbf{Viết mã:} Lập trình viên viết mã nguồn hợp đồng bằng ngôn ngữ chuyên dụng (như Solidity trên Ethereum, hoặc Go/Java/Node.js cho Chaincode trên Hyperledger Fabric).
-    \item \textbf{Biên dịch:} Mã nguồn được biên dịch thành mã máy (Bytecode) để máy ảo (như EVM) hoặc môi trường thực thi (Docker container) có thể đọc hiểu.
-    \item \textbf{Triển khai:} Bytecode được đóng gói vào một giao dịch đặc biệt và gửi lên mạng lưới Blockchain. Sau khi được các nút đồng thuận và đóng khối thành công, hợp đồng sẽ có một Địa chỉ duy nhất (Contract Address) cố định trên chuỗi.
+    \item \textbf{Biên dịch:} Mã nguồn được biên dịch thành mã máy để máy ảo (như EVM) hoặc môi trường thực thi (như Docker container) có thể đọc hiểu.
+    \item \textbf{Triển khai:} Bytecode được đóng gói vào một giao dịch đặc biệt và gửi lên mạng lưới Blockchain. Sau khi được các nút đồng thuận và đóng khối thành công, hợp đồng sẽ có một Địa chỉ duy nhất cố định trên chuỗi.
     \item \textbf{Định tuyến gọi hàm:} Khi người dùng hoặc ứng dụng khách muốn tương tác, họ gửi một giao dịch đến địa chỉ của hợp đồng kèm theo tên hàm và tham số đầu vào. Hệ thống mạng lưới sẽ định tuyến yêu cầu này đến đúng môi trường cô lập chứa mã hợp đồng để kích hoạt thực thi.
     \item \textbf{Cập nhật trạng thái:} Sau khi tính toán xong, kết quả thực thi tạo ra một trạng thái mới (World State thay đổi). Trạng thái mới này được phân phối đồng bộ, xác nhận qua cơ chế đồng thuận mạng và ghi vĩnh viễn vào sổ cái phân tán.
 \end{enumerate}
@@ -767,7 +767,7 @@ Do đặc thù hướng tới chuỗi doanh nghiệp nội bộ với các đị
 \section{Hướng dẫn sử dụng và Triển khai}
 
 \subsection{Khởi tạo môi trường và cấu hình}
-Để hệ thống vận hành trơn tru, người dùng cần chuẩn bị một môi trường tối giản bao gồm Docker Engine và Go runtime \cite{donovan}. Toàn bộ thiết lập mạng lưới được tập trung vào một tệp cấu hình duy nhất nhằm giảm tải công việc của quản trị viên (DevOps).
+Để hệ thống vận hành trơn tru, người dùng cần chuẩn bị một môi trường tối giản bao gồm Docker Engine và Go runtime \cite{donovan}. Toàn bộ thiết lập mạng lưới được tập trung vào một tệp cấu hình duy nhất nhằm giảm tải công việc của quản trị viên.
 
 \begin{itemize}
     \item \textbf{Cấu hình mạng lưới qua \texttt{khoai-config.yaml}:} Tệp cấu hình này định nghĩa toàn bộ cấu trúc mạng, bao gồm thông tin định danh của các nút (mã định danh nút), địa chỉ IP, cổng giao tiếp P2P và các tham số cốt lõi của chuỗi (như thời gian đóng khối tối đa, kích thước khối). Việc sử dụng định dạng YAML giúp các cấu hình trở nên trực quan và dễ dàng chỉnh sửa cho người dùng mới.
@@ -794,7 +794,7 @@ Nhằm phục vụ mục đích giáo dục, Khoai Chain cung cấp một kịch
 \subsection{Các chức năng đang phát triển và Hạn chế hiện tại}
 Dù đã đáp ứng được mô hình blockchain riêng biệt tinh gọn, ở phiên bản hiện tại vẫn tồn tại một số giới hạn kỹ thuật cần được khắc phục trong các giai đoạn nghiên cứu tiếp theo:
 \begin{itemize}
-    \item \textbf{Khả năng tự động khám phá nút:} Mạng lưới hiện tại đang dựa vào cơ chế định tuyến tĩnh thông qua IP được cấu hình sẵn trong Docker. Trong tương lai, hệ thống cần tích hợp giao thức DHT (Distributed Hash Table) để các nút có thể tự động tìm thấy nhau trên môi trường Internet mở.
+    \item \textbf{Khả năng tự động khám phá nút:} Mạng lưới hiện tại đang dựa vào cơ chế định tuyến tĩnh thông qua IP được cấu hình sẵn trong Docker. Trong tương lai, hệ thống cần tích hợp giao thức DHT để các nút có thể tự động tìm thấy nhau trên môi trường Internet mở.
     \item \textbf{Cơ chế hoàn tác và tái sắp xếp chuỗi phức tạp:} Hệ thống hiện tại đã ngăn chặn được các nhánh rác khi đồng bộ, nhưng nếu mạng bị đứt gãy vật lý và tạo ra hai chuỗi song song dài bằng nhau, chưa có cơ chế hồi phục toàn diện để tự động gỡ bỏ các khối bị sai lệch và đưa toàn mạng về một trạng thái đồng thuận duy nhất.
     \item \textbf{Bảo mật tính toán trong hợp đồng thông minh:} Môi trường thực thi hợp đồng thông minh hiện chưa được cô lập tài nguyên tuyệt đối. Một hợp đồng chứa vòng lặp vô hạn do lập trình viên sơ suất có thể làm cạn kiệt tài nguyên CPU của tiến trình lõi. Cơ chế giới hạn tính toán đang được nghiên cứu và phát triển.
 \end{itemize}
