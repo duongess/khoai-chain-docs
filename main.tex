@@ -414,7 +414,9 @@ Hệ thống chuỗi doanh nghiệp yêu cầu tốc độ xử lý cao và các
         \textbf{Bản chất chống lỗi} & Chỉ chịu được lỗi nút bị sập nguồn, mất mạng (đột ngột dừng hoạt động). & Chịu được cả lỗi nút bị sập VÀ nút cố tình gian lận, gửi dữ liệu sai. \\ \hline
         \textbf{Thuật toán đại diện} & Raft \cite{ongaro}, Paxos. & PBFT \cite{castro}, IBFT. \\ \hline
         \textbf{Cơ chế hoạt động} & Bầu ra một nút Leader (Trưởng nhóm). Mọi giao dịch gửi tới Leader, Leader ghi logs và đồng bộ xuống các nút Follower. Nếu Leader sập, các nút còn lại bầu nhanh Leader mới. & Trải qua 3 giai đoạn đồng thuận nghiêm ngặt công khai: Pre-prepare, Prepare, và Commit thông qua việc trao đổi thông điệp toàn vẹn giữa tất cả các nút. \\ \hline
-        \textbf{Khả năng chịu lỗi} & Chịu lỗi tối đa lên tới $F = \frac{N-1}{2}$ (Mạng cần $2F + 1$ nút để hoạt động). & Chịu lỗi tối đa thấp hơn: $F = \frac{N-1}{3}$ (Mạng cần tối thiểu $3F + 1$ nút để hoạt động). \\ \hline
+        \textbf{Khả năng chịu lỗi} & 
+Chịu lỗi tối đa lên tới $F = \frac{N-1}{2}$ (Mạng cần $2F + 1$ nút để hoạt động) \cite{ongaro}. & 
+Chịu lỗi tối đa thấp hơn: $F = \frac{N-1}{3}$ (Mạng cần tối thiểu $3F + 1$ nút để hoạt động) \cite{lamport, castro}. \\ \hline
         \textbf{Ứng dụng doanh nghiệp} & Thích hợp cho môi trường nội bộ doanh nghiệp tin cậy cao, cần tốc độ cực nhanh. & Thích hợp cho môi trường Consortium (liên minh nhiều bên đối tác có sự nghi kị lẫn nhau). \\ \hline
     \end{tabular}
     \caption{So sánh thuật toán đồng thuận CFT và BFT}
